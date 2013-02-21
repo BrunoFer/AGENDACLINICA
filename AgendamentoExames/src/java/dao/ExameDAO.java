@@ -14,12 +14,16 @@ import org.hibernate.HibernateException;
  * @author bruno
  */
 public class ExameDAO {
-    
+
     private Integer idExame;
     private String nome;
     private Float valor;
 
     public ExameDAO() {
+    }
+
+    public ExameDAO(Integer id) {
+        this.idExame = id;
     }
 
     public ExameDAO(Integer idExame, String nome, Float valor) {
@@ -51,13 +55,13 @@ public class ExameDAO {
     public void setValor(Float valor) {
         this.valor = valor;
     }
-    
+
     public EntityManager conecta() {
         EntityManager em = Conexao.getManager();
         return em;
     }
-    
-    public boolean cadastrar(){
+
+    public boolean cadastrar() {
         EntityManager em = conecta();
         try {
             if (em != null) {
@@ -80,21 +84,37 @@ public class ExameDAO {
             return false;
         }
     }
-    
-    public List<ExameDAO> getExames(){
-        try{
+
+    public void remove() {
+        EntityManager em = conecta();
+        try {
+            if (em != null) {
+                Exame e = em.find(Exame.class, idExame);
+                em.getTransaction().begin();
+                em.remove(e);
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        }
+    }
+
+    public List<ExameDAO> getExames() {
+        try {
             EntityManager em = conecta();
-            if (em!=null){
+            if (em != null) {
                 Query q = em.createQuery("SELECT p FROM Exame p");
                 List<Exame> resultado = q.getResultList();
                 List<ExameDAO> exames = new ArrayList<ExameDAO>();
-                for (Exame p: resultado){
+                for (Exame p : resultado) {
                     exames.add(new ExameDAO(p.getIdExame(), p.getNome(), p.getValor()));
                 }
                 return exames;
             }
             return null;
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

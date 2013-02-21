@@ -60,6 +60,11 @@ public class ExameBean {
         }
     }
     
+    public void remove(Integer id){
+        ExameDAO exame = new ExameDAO(id);
+        exame.remove();
+    }
+    
     public DataModel<ExameBean> listaExames(){
         ExameDAO exame = new ExameDAO();
         if (exame.getExames()!=null){
