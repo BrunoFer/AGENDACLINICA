@@ -13,14 +13,14 @@
     </head>
     <body>
         <h1>Bem vindo ao sistema de agendamento de exames!</h1>
-        <a href="faces/formPaciente.jsp">Cadastrar um paciente</a><br>
-        <a href="faces/formMedico.jsp">Cadastrar um médico</a><br>
-        <a href="faces/formExame.jsp">Cadastrar um exame</a><br>
-        <a href="faces/formExamePaciente.jsp">Agendar um exame</a><br><br><br>
+        <a href="faces/moduloPaciente/formPaciente.jsp">Cadastrar um paciente</a><br>
+        <a href="faces/moduloMedico/formMedico.jsp">Cadastrar um médico</a><br>
+        <a href="faces/moduloExame/formExame.jsp">Cadastrar um exame</a><br>
+        <a href="faces/moduloAgenda/formAgenda.jsp">Agendar um exame</a><br><br><br>
         
-        <a href="faces/formPaciente.jsp">Listar pacientes</a><br>
-        <a href="faces/formMedico.jsp">Listar médico</a><br>
-        <a href="faces/formExame.jsp">Listar exames</a><br>
-        <a href="faces/formExamePaciente.jsp">Ver agenda</a><br>
+        <a href="faces/moduloPaciente/listaPacientes.jsp">Listar pacientes</a><br>
+        <a href="faces/moduloMedico/listaMedicos.jsp">Listar médico</a><br>
+        <a href="faces/moduloExame/listaExames.jsp">Listar exames</a><br>
+        <a href="faces/moduloAgenda/listaAgenda.jsp">Ver agenda</a><br>
     </body>
 </html>
