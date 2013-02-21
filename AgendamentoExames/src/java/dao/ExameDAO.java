@@ -4,6 +4,9 @@ import connect.Conexao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import db.Exame;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
 import org.hibernate.HibernateException;
 
 /**
@@ -75,6 +78,24 @@ public class ExameDAO {
                 em.getTransaction().rollback();
             }
             return false;
+        }
+    }
+    
+    public List<ExameDAO> getExames(){
+        try{
+            EntityManager em = conecta();
+            if (em!=null){
+                Query q = em.createQuery("SELECT p FROM Paciente p");
+                List<Exame> resultado = q.getResultList();
+                List<ExameDAO> exames = new ArrayList<ExameDAO>();
+                for (Exame p: resultado){
+                    exames.add(new ExameDAO(p.getIdExame(), p.getNome(), p.getValor()));
+                }
+                return exames;
+            }
+            return null;
+        } catch (Exception e){
+            return null;
         }
     }
 }

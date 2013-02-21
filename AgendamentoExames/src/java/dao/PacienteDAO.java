@@ -6,8 +6,11 @@ package dao;
 
 import connect.Conexao;
 import db.Paciente;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.hibernate.HibernateException;
 
 /**
@@ -139,6 +142,25 @@ public class PacienteDAO {
                 em.getTransaction().rollback();
             }
             return false;
+        }
+    }
+    
+    public List<PacienteDAO> getPacientes(){
+        try{
+            EntityManager em = conexao();
+            if (em!=null){
+                Query q = em.createQuery("SELECT p FROM Paciente p");
+                List<Paciente> resultado = q.getResultList();
+                List<PacienteDAO> pacientes = new ArrayList<PacienteDAO>();
+                for (Paciente p: resultado){
+                    pacientes.add(new PacienteDAO(p.getIdPaciente(), p.getNome(), p.getDataNasc(), 
+                            p.getLogradouro(), p.getNumero(), p.getBairro(), p.getCidade(), p.getUf()));
+                }
+                return pacientes;
+            }
+            return null;
+        } catch (Exception e){
+            return null;
         }
     }
 }

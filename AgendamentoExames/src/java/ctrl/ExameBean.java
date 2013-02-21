@@ -1,6 +1,10 @@
 package ctrl;
 
 import dao.ExameDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  *
@@ -8,9 +12,10 @@ import dao.ExameDAO;
  */
 public class ExameBean {
 
-    Integer idExame;
-    String nome;
-    Float valor;
+    private Integer idExame;
+    private String nome;
+    private Float valor;
+    private List<ExameBean> examesBean = new ArrayList<ExameBean>();
 
     public ExameBean() {
     }
@@ -53,6 +58,18 @@ public class ExameBean {
             exame.setValor(valor);
             exame.cadastrar();
         }
+    }
+    
+    public DataModel<ExameBean> listaExames(){
+        ExameDAO exame = new ExameDAO();
+        if (exame.getExames()!=null){
+            examesBean.removeAll(examesBean);
+            for (ExameDAO e: exame.getExames()){
+                examesBean.add(new ExameBean(e.getIdExame(), e.getNome(), e.getValor()));
+            }
+            return new ListDataModel(examesBean);
+        }
+        return null;
     }
     
 }

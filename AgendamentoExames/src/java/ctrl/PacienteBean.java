@@ -5,7 +5,11 @@
 package ctrl;
 
 import dao.PacienteDAO;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  *
@@ -21,6 +25,7 @@ public class PacienteBean {
     private String bairro;
     private String cidade;
     private String uf;
+    private List<PacienteBean> pacientesBean = new ArrayList<PacienteBean>();
 
     public PacienteBean(){
        
@@ -120,6 +125,19 @@ public class PacienteBean {
             System.out.println(paciente.toString());
             paciente.cadastrar();
         }
+    }
+    
+    public DataModel<PacienteBean> listaPacientes(){
+        PacienteDAO paciente = new PacienteDAO();
+        if (paciente.getPacientes()!=null){
+            pacientesBean.removeAll(pacientesBean);
+            for (PacienteDAO p: paciente.getPacientes()){
+                pacientesBean.add(new PacienteBean(p.getId(), p.getNome(), p.getDataNasc(), 
+                        p.getLogradouro(), p.getNumero(), p.getBairro(), p.getCidade(), p.getUf()));
+            }
+            return new ListDataModel(pacientesBean);
+        }
+        return null;
     }
     
 }
