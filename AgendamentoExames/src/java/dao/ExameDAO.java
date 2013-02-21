@@ -15,9 +15,9 @@ import org.hibernate.HibernateException;
  */
 public class ExameDAO {
     
-    Integer idExame;
-    String nome;
-    Float valor;
+    private Integer idExame;
+    private String nome;
+    private Float valor;
 
     public ExameDAO() {
     }
@@ -85,7 +85,7 @@ public class ExameDAO {
         try{
             EntityManager em = conecta();
             if (em!=null){
-                Query q = em.createQuery("SELECT p FROM Paciente p");
+                Query q = em.createQuery("SELECT p FROM Exame p");
                 List<Exame> resultado = q.getResultList();
                 List<ExameDAO> exames = new ArrayList<ExameDAO>();
                 for (Exame p: resultado){

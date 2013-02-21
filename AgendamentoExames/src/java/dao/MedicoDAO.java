@@ -4,6 +4,9 @@ import connect.Conexao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import db.Medico;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Query;
 import org.hibernate.HibernateException;
 
 /**
@@ -12,9 +15,9 @@ import org.hibernate.HibernateException;
  */
 public class MedicoDAO {
 
-    Integer idMedico;
-    String nome;
-    String crm;
+    private Integer idMedico;
+    private String nome;
+    private String crm;
 
     public MedicoDAO() {
     }
@@ -75,6 +78,24 @@ public class MedicoDAO {
                 em.getTransaction().rollback();
             }
             return false;
+        }
+    }
+    
+    public List<MedicoDAO> getMedicos(){
+        try{
+            EntityManager em = conecta();
+            if (em!=null){
+                Query q = em.createQuery("SELECT m FROM Medico m");
+                List<Medico> resultado = q.getResultList();
+                List<MedicoDAO> medicos = new ArrayList<MedicoDAO>();
+                for (Medico p: resultado){
+                    medicos.add(new MedicoDAO(p.getIdMedico(), p.getNome(), p.getCrm()));
+                }
+                return medicos;
+            }
+            return null;
+        } catch (Exception e){
+            return null;
         }
     }
 }

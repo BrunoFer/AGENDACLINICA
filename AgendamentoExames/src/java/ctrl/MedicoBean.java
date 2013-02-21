@@ -1,6 +1,10 @@
 package ctrl;
 
 import dao.MedicoDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  *
@@ -8,9 +12,10 @@ import dao.MedicoDAO;
  */
 public class MedicoBean {
 
-    Integer idMedico;
-    String nome;
-    String crm;
+    private Integer idMedico;
+    private String nome;
+    private String crm;
+    private List<MedicoBean> medicosBean = new ArrayList<MedicoBean>();
 
     public MedicoBean() {
     }
@@ -53,5 +58,17 @@ public class MedicoBean {
             medico.setCrm(crm);
             medico.cadastrar();
         }
+    }
+    
+    public DataModel<MedicoBean> listaMedicos(){
+        MedicoDAO medico = new MedicoDAO();
+        if (medico.getMedicos()!=null){
+            medicosBean.removeAll(medicosBean);
+            for (MedicoDAO e: medico.getMedicos()){
+                medicosBean.add(new MedicoBean(e.getIdMedico(), e.getNome(), e.getCrm()));
+            }
+            return new ListDataModel(medicosBean);
+        }
+        return null;
     }
 }
