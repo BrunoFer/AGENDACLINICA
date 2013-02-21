@@ -21,6 +21,10 @@ public class MedicoDAO {
 
     public MedicoDAO() {
     }
+    
+    public MedicoDAO(Integer id){
+        this.idMedico = id;
+    }
 
     public MedicoDAO(Integer idMedico, String nome, String crm) {
         this.idMedico = idMedico;
@@ -78,6 +82,19 @@ public class MedicoDAO {
                 em.getTransaction().rollback();
             }
             return false;
+        }
+    }
+    
+    public void remove(){
+        EntityManager em = conecta();
+        try {
+            Medico m = em.find(Medico.class, idMedico);
+            em.getTransaction().begin();
+            em.remove(m);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
         }
     }
     

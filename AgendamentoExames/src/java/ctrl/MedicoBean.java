@@ -71,4 +71,9 @@ public class MedicoBean {
         }
         return null;
     }
+    
+    public void remove(Integer id){
+        MedicoDAO medico = new MedicoDAO(id);
+        medico.remove();
+    }
 }
