@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -16,7 +17,8 @@ public class MedicoBean {
     private String nome;
     private String crm;
     private List<MedicoBean> medicosBean = new ArrayList<MedicoBean>();
-
+    private List<SelectItem> medicos = new ArrayList<SelectItem>();
+    
     public MedicoBean() {
     }
 
@@ -50,6 +52,20 @@ public class MedicoBean {
         this.nome = nome;
     }
 
+    public List<SelectItem> getMedicosBean() {
+        MedicoDAO medico = new MedicoDAO();
+        medicos.removeAll(medicos);
+        for (MedicoDAO e : medico.getMedicos()) {
+            medicos.add(new SelectItem(e.getIdMedico(), e.getNome()));
+            
+        }
+        return medicos;
+    }
+
+    public void setMedicosBean(List<MedicoBean> medicosBean) {
+        this.medicosBean = medicosBean;
+    }
+
     public void cadastrar() {
         if (!nome.isEmpty() && !crm.isEmpty()) {
             MedicoDAO medico = new MedicoDAO();
@@ -59,39 +75,41 @@ public class MedicoBean {
             medico.cadastrar();
         }
     }
-    
-    public DataModel<MedicoBean> listaMedicos(){
+
+    public DataModel<MedicoBean> listaMedicos() {
         MedicoDAO medico = new MedicoDAO();
-        if (medico.getMedicos()!=null){
+        if (medico.getMedicos() != null) {
             medicosBean.removeAll(medicosBean);
-            for (MedicoDAO e: medico.getMedicos()){
+            for (MedicoDAO e : medico.getMedicos()) {
                 medicosBean.add(new MedicoBean(e.getIdMedico(), e.getNome(), e.getCrm()));
             }
             return new ListDataModel(medicosBean);
         }
         return null;
     }
-    
-    public void remove(Integer id){
+
+    public void remove(Integer id) {
         MedicoDAO medico = new MedicoDAO(id);
         medico.remove();
     }
-    
-    public String loadMedico(Integer id){
+
+    public String loadMedico(Integer id) {
         int i;
-        for (i=0;i<medicosBean.size();i++)
-            if (medicosBean.get(i).idMedico == id)
+        for (i = 0; i < medicosBean.size(); i++) {
+            if (medicosBean.get(i).idMedico == id) {
                 break;
-        
+            }
+        }
+
         this.idMedico = id;
         this.nome = medicosBean.get(i).getNome();
         this.crm = medicosBean.get(i).getCrm();
-        
+
         return "carrega";
     }
-    
-    public void alterar(){
-        MedicoDAO medico = new MedicoDAO(idMedico,nome,crm);
+
+    public void alterar() {
+        MedicoDAO medico = new MedicoDAO(idMedico, nome, crm);
         medico.alterar();
     }
 }

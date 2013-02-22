@@ -75,7 +75,8 @@ public class AgendaBean {
     }
     
     public void cadastrar(){
-        AgendaDAO agenda = new AgendaDAO();
+        System.out.println("cheguei aqui agora");
+        AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
         agenda.cadastrar();
     }
 }

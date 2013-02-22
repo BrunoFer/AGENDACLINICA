@@ -26,18 +26,15 @@
                 </h:inputText><br>
                 
                 Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
-                    <f:selectItems value="#{Medico.listaMedicos()}" var="med" itemLabel="#{med.nome}" 
-                                   itemValue="#{med.idMedico}"/>
+                    <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
                 </h:selectOneMenu><br>
                 
                 Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
-                    <f:selectItems value="#{Exame.listaExames()}" var="exa" itemLabel="#{exa.nome}" 
-                                   itemValue="#{exa.idExame}"/>
+                    <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
                 </h:selectOneMenu><br>
                 
                 Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
-                    <f:selectItems value="#{Paciente.listaPacientes()}" var="pac" itemLabel="#{pac.nome}" 
-                                   itemValue="#{pac.id}"/>
+                    <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
                 </h:selectOneMenu><br>
                 
                 Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>

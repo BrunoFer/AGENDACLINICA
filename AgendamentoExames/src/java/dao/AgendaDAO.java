@@ -1,6 +1,10 @@
 package dao;
 
+import connect.Conexao;
+import db.Agenda;
+import db.AgendaPK;
 import java.util.Date;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -74,8 +78,31 @@ public class AgendaDAO {
         this.resultado = resultado;
     }
     
+    public EntityManager conectar(){
+        EntityManager em = Conexao.getManager();
+        return em;
+    }
+    
     public void cadastrar(){
         System.out.println("passei aqui");
         System.out.println("Paciente: " +idPaciente+" - Medico: "+idMedico);
+        EntityManager em = conectar();
+        try {
+            if (em!=null){
+                AgendaPK a = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
+                Agenda agenda = new Agenda();
+                agenda.setAgendaPK(a);
+                agenda.setObs(obs);
+                agenda.setResultado(resultado);
+                
+                em.getTransaction().begin();
+                em.persist(agenda);
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+        }
+        
     }
 }

@@ -10,13 +10,14 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
 /**
  *
  * @author bruno
  */
 public class PacienteBean {
-    
+
     private Integer id;
     private String nome;
     private Date dataNasc;
@@ -26,11 +27,11 @@ public class PacienteBean {
     private String cidade;
     private String uf;
     private List<PacienteBean> pacientesBean = new ArrayList<PacienteBean>();
-
-    public PacienteBean(){
-       
-    }
+    private List<SelectItem> pacientes = new ArrayList<SelectItem>();
     
+    public PacienteBean() {
+    }
+
     public PacienteBean(Integer id, String nome, Date dataNasc, String logradouro, String numero, String bairro, String cidade, String uf) {
         this.id = id;
         this.nome = nome;
@@ -41,7 +42,7 @@ public class PacienteBean {
         this.cidade = cidade;
         this.uf = uf;
     }
-    
+
     public String getBairro() {
         return bairro;
     }
@@ -106,13 +107,26 @@ public class PacienteBean {
         this.uf = uf;
     }
 
+    public List<SelectItem> getPacientesBean() {
+        PacienteDAO paciente = new PacienteDAO();
+        pacientes.removeAll(pacientes);
+        for (PacienteDAO p : paciente.getPacientes()) {
+            pacientes.add(new SelectItem(p.getId(),p.getNome()));
+        }
+        return pacientes;
+    }
+
+    public void setPacientesBean(List<PacienteBean> pacientesBean) {
+        this.pacientesBean = pacientesBean;
+    }
+
     @Override
     public String toString() {
         return "PacienteBean{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + '}';
     }
-    
-    public void cadastrar(){
-        if (!nome.isEmpty() && dataNasc!=null){
+
+    public void cadastrar() {
+        if (!nome.isEmpty() && dataNasc != null) {
             PacienteDAO paciente = new PacienteDAO();
             paciente.setId(null);
             paciente.setNome(nome);
@@ -122,39 +136,39 @@ public class PacienteBean {
             paciente.setBairro(bairro);
             paciente.setCidade(cidade);
             paciente.setUf(uf);
-            System.out.println(paciente.toString());
             paciente.cadastrar();
         }
     }
-    
-    public DataModel<PacienteBean> listaPacientes(){
+
+    public DataModel<PacienteBean> listaPacientes() {
         PacienteDAO paciente = new PacienteDAO();
-        if (paciente.getPacientes()!=null){
+        if (paciente.getPacientes() != null) {
             pacientesBean.removeAll(pacientesBean);
-            for (PacienteDAO p: paciente.getPacientes()){
-                pacientesBean.add(new PacienteBean(p.getId(), p.getNome(), p.getDataNasc(), 
+            for (PacienteDAO p : paciente.getPacientes()) {
+                pacientesBean.add(new PacienteBean(p.getId(), p.getNome(), p.getDataNasc(),
                         p.getLogradouro(), p.getNumero(), p.getBairro(), p.getCidade(), p.getUf()));
             }
             return new ListDataModel(pacientesBean);
         }
         return null;
     }
-    
-    public void remove(Integer id){
+
+    public void remove(Integer id) {
         PacienteDAO paciente = new PacienteDAO(id);
         paciente.remove();
     }
-    
-    public void alterar(){
+
+    public void alterar() {
         PacienteDAO paciente = new PacienteDAO(id, nome, dataNasc, logradouro, numero, bairro, cidade, uf);
         paciente.alterar();
     }
-    
-    public String loadPaciente(Integer id){
+
+    public String loadPaciente(Integer id) {
         int i;
-        for (i=0;i<pacientesBean.size();i++){
-            if (pacientesBean.get(i).id == id)
+        for (i = 0; i < pacientesBean.size(); i++) {
+            if (pacientesBean.get(i).id == id) {
                 break;
+            }
         }
         this.id = id;
         this.nome = pacientesBean.get(i).nome;
@@ -164,7 +178,7 @@ public class PacienteBean {
         this.bairro = pacientesBean.get(i).bairro;
         this.cidade = pacientesBean.get(i).cidade;
         this.uf = pacientesBean.get(i).uf;
-        
+
         return "carrega";
     }
 }
