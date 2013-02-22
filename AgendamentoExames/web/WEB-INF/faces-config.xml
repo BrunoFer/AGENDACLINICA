@@ -31,4 +31,31 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
+    <navigation-rule>
+        <from-view-id>/moduloExame/listaExames.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>carrega</from-outcome>
+            <to-view-id>/moduloExame/alteraExame.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/moduloPaciente/listaPacientes.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>carrega</from-outcome>
+            <to-view-id>/moduloPaciente/alteraPaciente.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/moduloMedico/listaMedicos.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>carrega</from-outcome>
+            <to-view-id>/moduloMedico/alteraMedico.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
