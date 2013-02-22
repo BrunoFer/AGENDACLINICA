@@ -15,7 +15,7 @@ public class ExameBean {
     private Integer idExame;
     private String nome;
     private Float valor;
-    private List<ExameBean> examesBean = new ArrayList<ExameBean>();
+    private List<ExameBean> examesBean = new ArrayList();
 
     public ExameBean() {
     }
@@ -77,4 +77,22 @@ public class ExameBean {
         return null;
     }
     
+    public void alterar(){
+        ExameDAO exame = new ExameDAO(idExame,nome,valor);
+        exame.alterar();
+    }
+    
+    public String loadExame(Integer id){
+        int i;
+        for (i=0;i<examesBean.size();i++){
+            if (examesBean.get(i).idExame==id)
+                break;
+        }
+
+        this.idExame = id;
+        this.nome = examesBean.get(i).getNome();
+        this.valor = examesBean.get(i).getValor();
+        
+        return "carrega";
+    }
 }

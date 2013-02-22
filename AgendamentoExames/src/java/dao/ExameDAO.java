@@ -118,4 +118,20 @@ public class ExameDAO {
             return null;
         }
     }
+    
+    public void alterar(){
+        EntityManager em = conecta();
+        try {
+            Exame exame = em.find(Exame.class, idExame);
+            exame.setNome(nome);
+            exame.setValor(valor);
+            
+            em.getTransaction().begin();
+            em.persist(exame);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+        }
+    }
 }
