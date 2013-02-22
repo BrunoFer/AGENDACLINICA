@@ -20,13 +20,30 @@
             <h:form id="cadastro">
 
                 <h1>Agendamento de exame:</h1><br>
+                
                 Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                 </h:inputText><br>
-                Médico: <h:selectManyCheckbox value="#{Medico.listar()}" id="medico"/><br>
-                Paciente: <h:selectManyCheckbox value="#{Paciente.listar()}" id="paciente"/><br><br>
                 
-                <h:commandButton action="#{Agenda.cadastrar(0)}" value="Cadastrar"/>
+                Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
+                    <f:selectItems value="#{Medico.listaMedicos()}" var="med" itemLabel="#{med.nome}" 
+                                   itemValue="#{med.idMedico}"/>
+                </h:selectOneMenu><br>
+                
+                Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
+                    <f:selectItems value="#{Exame.listaExames()}" var="exa" itemLabel="#{exa.nome}" 
+                                   itemValue="#{exa.idExame}"/>
+                </h:selectOneMenu><br>
+                
+                Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
+                    <f:selectItems value="#{Paciente.listaPacientes()}" var="pac" itemLabel="#{pac.nome}" 
+                                   itemValue="#{pac.id}"/>
+                </h:selectOneMenu><br>
+                
+                Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
+                Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
+                
+                <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar"/>
 
             </h:form>
         </f:view>
