@@ -115,4 +115,20 @@ public class MedicoDAO {
             return null;
         }
     }
+    
+    public void alterar(){
+        EntityManager em = conecta();
+        try {
+            Medico medico = em.find(Medico.class, idMedico);
+            medico.setNome(nome);
+            medico.setCrm(crm);
+            
+            em.getTransaction().begin();
+            em.persist(medico);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+        }
+    }
 }

@@ -76,4 +76,22 @@ public class MedicoBean {
         MedicoDAO medico = new MedicoDAO(id);
         medico.remove();
     }
+    
+    public String loadMedico(Integer id){
+        int i;
+        for (i=0;i<medicosBean.size();i++)
+            if (medicosBean.get(i).idMedico == id)
+                break;
+        
+        this.idMedico = id;
+        this.nome = medicosBean.get(i).getNome();
+        this.crm = medicosBean.get(i).getCrm();
+        
+        return "carrega";
+    }
+    
+    public void alterar(){
+        MedicoDAO medico = new MedicoDAO(idMedico,nome,crm);
+        medico.alterar();
+    }
 }
