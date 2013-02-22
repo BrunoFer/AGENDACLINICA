@@ -180,4 +180,25 @@ public class PacienteDAO {
                 em.getTransaction().rollback();
         }
     }
+    
+    public void alterar(){
+        EntityManager em = conexao();
+        try {
+            Paciente paciente = em.find(Paciente.class, id);
+            paciente.setNome(nome);
+            paciente.setDataNasc(dataNasc);
+            paciente.setLogradouro(logradouro);
+            paciente.setNumero(numero);
+            paciente.setBairro(bairro);
+            paciente.setCidade(cidade);
+            paciente.setUf(uf);
+            
+            em.getTransaction().begin();
+            em.persist(paciente);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+        }
+    }
 }

@@ -144,4 +144,26 @@ public class PacienteBean {
         PacienteDAO paciente = new PacienteDAO(id);
         paciente.remove();
     }
+    
+    public void alterar(){
+        PacienteDAO paciente = new PacienteDAO(id, nome, dataNasc, logradouro, numero, bairro, cidade, uf);
+        paciente.alterar();
+    }
+    
+    public String loadPaciente(Integer id){
+        int i;
+        for (i=0;i<pacientesBean.size();i++){
+            if (pacientesBean.get(i).id == id)
+                break;
+        }
+        this.nome = pacientesBean.get(i).nome;
+        this.dataNasc = pacientesBean.get(i).dataNasc;
+        this.logradouro = pacientesBean.get(i).logradouro;
+        this.numero = pacientesBean.get(i).numero;
+        this.bairro = pacientesBean.get(i).bairro;
+        this.cidade = pacientesBean.get(i).cidade;
+        this.uf = pacientesBean.get(i).uf;
+        
+        return "carrega";
+    }
 }
