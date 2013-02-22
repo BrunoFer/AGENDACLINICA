@@ -140,4 +140,8 @@ public class PacienteBean {
         return null;
     }
     
+    public void remove(Integer id){
+        PacienteDAO paciente = new PacienteDAO(id);
+        paciente.remove();
+    }
 }

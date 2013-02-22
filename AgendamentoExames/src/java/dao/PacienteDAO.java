@@ -30,6 +30,10 @@ public class PacienteDAO {
 
     public PacienteDAO() {
     }
+    
+    public PacienteDAO(Integer id){
+        this.id = id;
+    }
 
     public PacienteDAO(Integer id, String nome, Date dataNasc, String logradouro, String numero, String bairro, String cidade, String uf) {
         this.id = id;
@@ -161,6 +165,19 @@ public class PacienteDAO {
             return null;
         } catch (Exception e){
             return null;
+        }
+    }
+    
+    public void remove(){
+        EntityManager em = conexao();
+        try {
+            Paciente p = em.find(Paciente.class, id);
+            em.getTransaction().begin();
+            em.remove(p);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
         }
     }
 }
