@@ -1,21 +1,28 @@
 package ctrl;
 
 import dao.AgendaDAO;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  *
  * @author bruno
  */
 public class AgendaBean {
+
     private Date dataHora;
     private Integer idPaciente;
     private Integer idMedico;
     private Integer idExame;
     private String obs;
     private String resultado;
+    private List<AgendaBean> agendamentos = new ArrayList<AgendaBean>();
 
-    public AgendaBean() {}
+    public AgendaBean() {
+    }
 
     public AgendaBean(Date dataHora, Integer idPaciente, Integer idMedico, Integer idExame, String obs, String resultado) {
         this.dataHora = dataHora;
@@ -25,7 +32,7 @@ public class AgendaBean {
         this.obs = obs;
         this.resultado = resultado;
     }
-    
+
     public Date getDataHora() {
         return dataHora;
     }
@@ -73,10 +80,29 @@ public class AgendaBean {
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
-    
-    public void cadastrar(){
+
+    public void cadastrar() {
         System.out.println("cheguei aqui agora");
         AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
         agenda.cadastrar();
+    }
+
+    public DataModel<AgendaBean> listaAgendamentos() {
+        AgendaDAO ag = new AgendaDAO();
+        if (ag.getAgendamentos() != null) {
+            agendamentos.removeAll(agendamentos);
+            for (AgendaDAO a : ag.getAgendamentos()) {
+                agendamentos.add(new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
+                        a.getObs(), a.getResultado()));
+            }
+            return new ListDataModel(agendamentos);
+        }
+        return null;
+    }
+
+    public void loadAgendamento(Date data, Integer idPac, Integer idExa, Integer idMed) {
+    }
+
+    public void remove(Date data, Integer idPac, Integer idExa, Integer idMed) {
     }
 }

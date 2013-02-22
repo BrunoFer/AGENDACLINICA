@@ -3,8 +3,11 @@ package dao;
 import connect.Conexao;
 import db.Agenda;
 import db.AgendaPK;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -103,6 +106,24 @@ public class AgendaDAO {
             if (em.getTransaction().isActive())
                 em.getTransaction().rollback();
         }
-        
+    }
+    
+    public List<AgendaDAO> getAgendamentos(){
+        EntityManager em = conectar();
+        try {
+            Query q = em.createQuery("SELECT a FROM Agenda a");
+            List<Agenda> a = q.getResultList();
+            List<AgendaDAO> agenda = new ArrayList<AgendaDAO>();
+            for (Agenda ag: a){
+                AgendaPK apk = ag.getAgendaPK();
+                agenda.add(new AgendaDAO(apk.getDataHora(), apk.getIdPaciente(), apk.getIdMedico(), apk.getIdExame(), 
+                        ag.getObs(), ag.getResultado()));
+            }
+            return agenda;
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+            return null;
+        }
     }
 }

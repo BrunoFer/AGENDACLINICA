@@ -13,14 +13,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de clientes</title>
+        <title>Lista de Agendamentos</title>
         <style>
             .cabecalho{
                 background-color: #33ff00;
-            }
-            .coluna1{
-                width: 20px;
-                background-color: #cccccc;
             }
             .colunas{
                 text-align: center;
@@ -39,62 +35,67 @@
 
             <h:form>
                 
-                <h:dataTable value="#{Cliente.listaCliente()}" var="cli" id="listaClientes" border="2"
-                             width="50%" columnClasses="coluna1,colunas, colunas, colunas, colunas, colunaBotoes, colunaBotoes"
+                <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" border="2"
+                             width="50%" columnClasses="colunas, colunas, colunas, colunas, colunas, colunas, colunaBotoes, colunaBotoes"
                              headerClass="cabecalho">
                     <f:facet name="header">
-                        <h:outputText value="Tabela de CLientes" />
+                        <h:outputText value="Tabela de Agendamentos" />
                     </f:facet>
 
                     <h:column>
-                        <h:selectBooleanCheckbox value="#{cli.cb}"/>
+                        <f:facet name="header">
+                            <h:outputText value="Data/Hora">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </f:facet>
+                        <h:outputText value="#{agenda.dataHora}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="ID"/>
+                            <h:outputText value="IdPaciente"/>
                         </f:facet>
-                        <h:outputText value="#{cli.id}"/>
+                        <h:outputText value="#{agenda.idPaciente}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Nome"/>
+                            <h:outputText value="IdExame"/>
                         </f:facet>
-                        <h:outputText value="#{cli.nome}"/>
+                        <h:outputText value="#{agenda.idExame}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Idade"/>
+                            <h:outputText value="IdMedico"/>
                         </f:facet>
-                        <h:outputText value="#{cli.idade}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Data Nascimento"/>
-                        </f:facet>
-                        <h:outputText value="#{cli.dataHora}">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputText>    
+                        <h:outputText value="#{agenda.idMedico}"/>
                     </h:column>
                     
                     <h:column>
-                        <h:commandButton action="#{Cliente.remove(cli.id)}" value="Excluir"/>
+                        <f:facet name="header">
+                            <h:outputText value="Observações"/>
+                        </f:facet>
+                        <h:outputText value="#{agenda.obs}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="resultado"/>
+                        </f:facet>
+                        <h:outputText value="#{agenda.resultado}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <h:commandButton action="#{Agenda.remove(agenda.dataHora,agenda.idPaciente,agenda.idExame,
+                                                   agenda.idMedico)}" value="Excluir"/>
                     </h:column>
 
                     <h:column>
-                        <h:commandButton action="#{Cliente.loadCliente2(cli.id)}" value="Alterar"/>
+                        <h:commandButton action="#{Agenda.loadCliente(agenda.dataHora,agenda.idPaciente,agenda.idExame,
+                                                   agenda.idMedico)}" value="Alterar"/>
                     </h:column>
                 </h:dataTable>
-
-                <br/><br/>
-                <h:commandButton value="Editar" action="#{Cliente.loadCliente()}"/>
-                <h:commandButton value="Remover" action="#{Cliente.remove2()}"/>
-                
-                <br/><br/>
-                <h:outputText value="#{Cliente.texto}"/>
 
                 <br/><br/>
                 <a href="index.jsp">Voltar para página inicial...</a>
