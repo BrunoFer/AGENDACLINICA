@@ -30,7 +30,7 @@
                 Numero: <h:inputText value="#{Paciente.numero}" id="numero"/><br>
                 Bairro: <h:inputText value="#{Paciente.bairro}" id="bairro"/><br>
                 Cidade: <h:inputText value="#{Paciente.cidade}" id="cidade"/><br>
-                UF: <h:selectManyListbox value="#{Paciente.uf}" id="uf"/><br>
+                UF: <h:inputText value="#{Paciente.uf}" id="uf"/><br>
                 
                 <h:commandButton action="#{Paciente.alterar()}" value="Alterar"/><br><br>
                 

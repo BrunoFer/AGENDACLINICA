@@ -156,6 +156,7 @@ public class PacienteBean {
             if (pacientesBean.get(i).id == id)
                 break;
         }
+        this.id = id;
         this.nome = pacientesBean.get(i).nome;
         this.dataNasc = pacientesBean.get(i).dataNasc;
         this.logradouro = pacientesBean.get(i).logradouro;
