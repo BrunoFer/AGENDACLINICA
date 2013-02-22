@@ -68,7 +68,7 @@
                     </h:column>
 
                     <h:column>
-                        <h:commandButton action="#{Medico.loadCliente(medico.idMedico)}" value="Alterar"/>
+                        <h:commandButton action="#{Medico.loadMedico(medico.idMedico)}" value="Alterar"/>
                     </h:column>
                 </h:dataTable>
 
