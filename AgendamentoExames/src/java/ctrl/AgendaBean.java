@@ -25,6 +25,9 @@ public class AgendaBean {
     private String obs;
     private String resultado;
     private List<AgendaBean> agendamentos = new ArrayList<AgendaBean>();
+    private PacienteBean pacienteBean;
+    private MedicoBean medicoBean;
+    private ExameBean exameBean;
 
     public AgendaBean() {
     }
@@ -86,6 +89,30 @@ public class AgendaBean {
         this.resultado = resultado;
     }
 
+    public ExameBean getExameBean() {
+        return exameBean;
+    }
+
+    public void setExameBean(ExameBean exameBean) {
+        this.exameBean = exameBean;
+    }
+
+    public MedicoBean getMedicoBean() {
+        return medicoBean;
+    }
+
+    public void setMedicoBean(MedicoBean medicoBean) {
+        this.medicoBean = medicoBean;
+    }
+
+    public PacienteBean getPacienteBean() {
+        return pacienteBean;
+    }
+
+    public void setPacienteBean(PacienteBean pacienteBean) {
+        this.pacienteBean = pacienteBean;
+    }
+
     public void cadastrar() {
         System.out.println("cheguei aqui agora");
         AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
@@ -97,8 +124,26 @@ public class AgendaBean {
         if (ag.getAgendamentos() != null) {
             agendamentos.removeAll(agendamentos);
             for (AgendaDAO a : ag.getAgendamentos()) {
-                agendamentos.add(new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
-                        a.getObs(), a.getResultado()));
+                AgendaBean agenda = new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
+                        a.getObs(), a.getResultado());
+                
+                PacienteBean paciente = new PacienteBean();
+                paciente.setId(a.getIdPaciente());
+                pacienteBean = paciente.getPaciente();
+                
+                MedicoBean medico = new MedicoBean();
+                medico.setIdMedico(a.getIdMedico());
+                medicoBean = medico.getMedico();
+                
+                ExameBean exame = new ExameBean();
+                exame.setIdExame(a.getIdExame());
+                exameBean = exame.getExame();
+                
+                agenda.setPacienteBean(pacienteBean);
+                agenda.setMedicoBean(medicoBean);
+                agenda.setExameBean(exameBean);
+                
+                agendamentos.add(agenda);
                 System.out.println();
             }
             return new ListDataModel(agendamentos);
@@ -144,6 +189,17 @@ public class AgendaBean {
         agendaDAO.alterar();
     }
 
+    public String buscaPaciente(){
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idPac = parametros.get("idPaciente").toString();
+        Integer idPac2 = Integer.parseInt(idPac);
+        
+        AgendaBean agenda = new AgendaBean();
+        agenda.setIdPaciente(idPaciente);
+        String nomePaciente = agenda.buscaPaciente();
+        return null;
+    }
+    
     public String remove() throws ParseException {
         Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String dataStr = parametros.get("dataHora").toString();
