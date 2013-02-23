@@ -24,7 +24,7 @@
     </head>
     <body>
         <h1>Login no sistema</h1><br>
-        <form action="faces/login.jsp" method="post">
+        <form action="login.jsp" method="post">
             Usuário: <input type="text" name="user"/><br>
             Senha: <input type="password" name="senha"/><br><br>
             <input type="submit" value="Logar"/>
