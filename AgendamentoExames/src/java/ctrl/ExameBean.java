@@ -75,11 +75,6 @@ public class ExameBean {
         }
     }
 
-    public void remove(Integer id) {
-        ExameDAO exame = new ExameDAO(id);
-        exame.remove();
-    }
-
     public DataModel<ExameBean> listaExames() {
         ExameDAO exame = new ExameDAO();
         if (exame.getExames() != null) {
@@ -90,6 +85,11 @@ public class ExameBean {
             return new ListDataModel(examesBean);
         }
         return null;
+    }
+    
+    public void remove(Integer id) {
+        ExameDAO exame = new ExameDAO(id);
+        exame.remove();
     }
 
     public void alterar() {
@@ -110,5 +110,12 @@ public class ExameBean {
         this.valor = examesBean.get(i).getValor();
 
         return "carrega";
+    }
+    
+    public ExameBean getExame() {
+        ExameDAO exameDAO = new ExameDAO(idExame);
+        exameDAO = exameDAO.getExame();
+        ExameBean exame = new ExameBean(exameDAO.getIdExame(), exameDAO.getNome(), exameDAO.getValor());
+        return exame;
     }
 }

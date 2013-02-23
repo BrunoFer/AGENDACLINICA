@@ -85,22 +85,6 @@ public class ExameDAO {
         }
     }
 
-    public void remove() {
-        EntityManager em = conecta();
-        try {
-            if (em != null) {
-                Exame e = em.find(Exame.class, idExame);
-                em.getTransaction().begin();
-                em.remove(e);
-                em.getTransaction().commit();
-            }
-        } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-        }
-    }
-
     public List<ExameDAO> getExames() {
         try {
             EntityManager em = conecta();
@@ -116,6 +100,43 @@ public class ExameDAO {
             return null;
         } catch (Exception e) {
             return null;
+        }
+    }
+    
+    public ExameDAO getExame(){
+        try{
+            EntityManager em = conecta();
+            if (em!=null){
+                String consulta = "SELECT e FROM Exame e WHERE e.idExame="+idExame;
+                //System.out.println(consulta);
+                Query q = em.createQuery(consulta);
+                List<Exame> resultado = q.getResultList();
+                //System.out.println(resultado.toString());
+                ExameDAO exame = new ExameDAO();
+                for (Exame e: resultado){
+                    exame = new ExameDAO(e.getIdExame(), e.getNome(), e.getValor());
+                }
+                return exame;
+            }
+            return null;
+        } catch (Exception e){
+            return null;
+        }
+    }
+    
+    public void remove() {
+        EntityManager em = conecta();
+        try {
+            if (em != null) {
+                Exame e = em.find(Exame.class, idExame);
+                em.getTransaction().begin();
+                em.remove(e);
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
         }
     }
     
