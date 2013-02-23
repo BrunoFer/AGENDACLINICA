@@ -14,19 +14,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Médico</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
-            <h:form id="cadastro">
+            <div class="body">
+                <h:form id="cadastro">
 
-                <h1>Cadastro de Médico</h1><br>
+                    <h2>Cadastro de Médico</h2><br>
 
-                Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
-                CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br><br>
+                    Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
+                    CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br><br>
 
-                <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar"/>
+                    <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar"/>
 
-            </h:form>
+                </h:form>
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -15,10 +15,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Altera Médico</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
-            <h1>Alterar Médico</h1>
+            <div class="body">
+            <h2>Alterar médico</h2>
 
             <h:form id="altera">
 
@@ -30,6 +35,10 @@
                 <h:commandLink action="listaMedicos.jsp" value="Lista de médicos"/>
                 
             </h:form>
+      </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

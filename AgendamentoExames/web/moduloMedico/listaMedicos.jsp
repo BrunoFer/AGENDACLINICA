@@ -14,69 +14,62 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Médicos</title>
-        <style>
-            .cabecalho{
-                background-color: #33ff00;
-            }
-            .colunas{
-                text-align: center;
-                width: 100px;
-                background-color: #ccccff;
-            }
-            .colunaBotoes{
-                width: 45px;
-                text-align: center;
-                background-color: #ffffff;
-            }
-        </style>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
+            <div class="body">
 
-            <h:form>
-                
-                <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" border="2"
-                             width="50%" columnClasses="colunas, colunas, colunas, colunaBotoes, colunaBotoes"
-                             headerClass="cabecalho">
-                    <f:facet name="header">
-                        <h:outputText value="Tabela de Médicos" />
-                    </f:facet>
+                <h:form>
 
-                    <h:column>
+                    <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" border="2"
+                                 width="50%" columnClasses="colunas, colunas, colunas, colunaBotoes, colunaBotoes"
+                                 headerClass="cabecalho">
                         <f:facet name="header">
-                            <h:outputText value="ID"/>
+                            <h:outputText value="Tabela de Médicos" />
                         </f:facet>
-                        <h:outputText value="#{medico.idMedico}"/>
-                    </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText value="#{medico.nome}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{medico.idMedico}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="CRM"/>
-                        </f:facet>
-                        <h:outputText value="#{medico.crm}"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <h:commandButton action="#{Medico.remove(medico.idMedico)}" value="Excluir"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{medico.nome}"/>
+                        </h:column>
 
-                    <h:column>
-                        <h:commandButton action="#{Medico.loadMedico(medico.idMedico)}" value="Alterar"/>
-                    </h:column>
-                </h:dataTable>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="CRM"/>
+                            </f:facet>
+                            <h:outputText value="#{medico.crm}"/>
+                        </h:column>
 
-                <br/><br/>
-                <a href="../index.jsp">Página inicial</a>
+                        <h:column>
+                            <h:commandButton action="#{Medico.remove(medico.idMedico)}" value="Excluir" styleClass="btn"/>
+                        </h:column>
 
-            </h:form>
-                
+                        <h:column>
+                            <h:commandButton action="#{Medico.loadMedico(medico.idMedico)}" value="Alterar" styleClass="btn"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br/><br/>
+                    <a href="../index.jsp">Página inicial</a>
+
+                </h:form>
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
