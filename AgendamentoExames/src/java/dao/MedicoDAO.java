@@ -85,19 +85,6 @@ public class MedicoDAO {
         }
     }
     
-    public void remove(){
-        EntityManager em = conecta();
-        try {
-            Medico m = em.find(Medico.class, idMedico);
-            em.getTransaction().begin();
-            em.remove(m);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            if (em.getTransaction().isActive())
-                em.getTransaction().rollback();
-        }
-    }
-    
     public List<MedicoDAO> getMedicos(){
         try{
             EntityManager em = conecta();
@@ -113,6 +100,40 @@ public class MedicoDAO {
             return null;
         } catch (Exception e){
             return null;
+        }
+    }
+    
+    public MedicoDAO getMedico(){
+        try{
+            EntityManager em = conecta();
+            if (em!=null){
+                String consulta = "SELECT m FROM Medico m WHERE m.idMedico="+idMedico;
+                //System.out.println(consulta);
+                Query q = em.createQuery(consulta);
+                List<Medico> resultado = q.getResultList();
+                //System.out.println(resultado.toString());
+                MedicoDAO medico = new MedicoDAO();
+                for (Medico m: resultado){
+                    medico = new MedicoDAO(m.getIdMedico(), m.getNome(), m.getCrm());
+                }
+                return medico;
+            }
+            return null;
+        } catch (Exception e){
+            return null;
+        }
+    }
+    
+    public void remove(){
+        EntityManager em = conecta();
+        try {
+            Medico m = em.find(Medico.class, idMedico);
+            em.getTransaction().begin();
+            em.remove(m);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
         }
     }
     

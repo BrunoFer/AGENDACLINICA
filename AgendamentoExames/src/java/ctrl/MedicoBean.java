@@ -92,6 +92,11 @@ public class MedicoBean {
         MedicoDAO medico = new MedicoDAO(id);
         medico.remove();
     }
+    
+    public void alterar() {
+        MedicoDAO medico = new MedicoDAO(idMedico, nome, crm);
+        medico.alterar();
+    }
 
     public String loadMedico(Integer id) {
         int i;
@@ -107,9 +112,12 @@ public class MedicoBean {
 
         return "carrega";
     }
-
-    public void alterar() {
-        MedicoDAO medico = new MedicoDAO(idMedico, nome, crm);
-        medico.alterar();
+    
+    public MedicoBean getMedico() {
+        MedicoDAO medicoDAO = new MedicoDAO(idMedico);
+        medicoDAO = medicoDAO.getMedico();
+        MedicoBean medico = new MedicoBean(medicoDAO.getIdMedico(), medicoDAO.getNome(), medicoDAO.getCrm());
+        return medico;
     }
+    
 }
