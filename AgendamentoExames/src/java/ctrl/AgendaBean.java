@@ -1,9 +1,15 @@
 package ctrl;
 
 import dao.AgendaDAO;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -94,13 +100,44 @@ public class AgendaBean {
             for (AgendaDAO a : ag.getAgendamentos()) {
                 agendamentos.add(new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
                         a.getObs(), a.getResultado()));
+                System.out.println();
             }
             return new ListDataModel(agendamentos);
         }
         return null;
     }
 
-    public void loadAgendamento(Date data, Integer idPac, Integer idExa, Integer idMed) {
+    public String loadAgendamento() throws ParseException {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String dataStr = parametros.get("dataHora").toString();
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
+        Date data2 = inputFormat.parse(dataStr);
+            
+        String idPac = parametros.get("idPaciente").toString();
+        Integer idPac2 = Integer.parseInt(idPac);
+        
+        String idMed = parametros.get("idMedico").toString();
+        Integer idMed2 = Integer.parseInt(idMed);
+        
+        String idExa = parametros.get("idExame").toString();
+        Integer idExa2 = Integer.parseInt(idExa);
+        
+        int i;
+        for (i=0;i<agendamentos.size();i++){
+            if (agendamentos.get(i).getDataHora().compareTo(data2)==0 && idExa2==agendamentos.get(i).getIdExame()
+                    && idPac2==agendamentos.get(i).getIdPaciente() && idMed2==agendamentos.get(i).getIdMedico()){
+                break;
+            }
+        }
+        
+        this.dataHora = data2;
+        this.idPaciente = idPac2;
+        this.idMedico = idMed2;
+        this.idExame = idExa2;
+        this.obs = agendamentos.get(i).getObs();
+        this.resultado = agendamentos.get(i).getResultado();
+        
+        return "carrega";
     }
 
     public void remove(Date data, Integer idPac, Integer idExa, Integer idMed) {

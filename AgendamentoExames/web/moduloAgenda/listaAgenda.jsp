@@ -92,8 +92,12 @@
                     </h:column>
 
                     <h:column>
-                        <h:commandButton action="#{Agenda.loadCliente(agenda.dataHora,agenda.idPaciente,agenda.idExame,
-                                                   agenda.idMedico)}" value="Alterar"/>
+                        <h:commandButton action="#{Agenda.loadAgendamento()}" value="Alterar">
+                            <f:param name="dataHora" value="#{agenda.dataHora}"/>
+                            <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
+                            <f:param name="idExame" value="#{agenda.idExame}"/>
+                            <f:param name="idMedico" value="#{agenda.idMedico}"/>
+                        </h:commandButton>
                     </h:column>
                 </h:dataTable>
 
