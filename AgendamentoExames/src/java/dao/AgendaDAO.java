@@ -14,6 +14,7 @@ import javax.persistence.Query;
  * @author bruno
  */
 public class AgendaDAO {
+
     private Date dataHora;
     private Integer idPaciente;
     private Integer idMedico;
@@ -23,7 +24,7 @@ public class AgendaDAO {
 
     public AgendaDAO() {
     }
-    
+
     public AgendaDAO(Date dataHora, Integer idPaciente, Integer idMedico, Integer idExame) {
         this.dataHora = dataHora;
         this.idPaciente = idPaciente;
@@ -87,70 +88,87 @@ public class AgendaDAO {
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
-    
-    public EntityManager conectar(){
+
+    public EntityManager conectar() {
         EntityManager em = Conexao.getManager();
         return em;
     }
-    
-    public void cadastrar(){
+
+    public void cadastrar() {
         System.out.println("passei aqui");
-        System.out.println("Paciente: " +idPaciente+" - Medico: "+idMedico);
+        System.out.println("Paciente: " + idPaciente + " - Medico: " + idMedico);
         EntityManager em = conectar();
         try {
-            if (em!=null){
+            if (em != null) {
                 AgendaPK a = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
                 Agenda agenda = new Agenda();
                 agenda.setAgendaPK(a);
                 agenda.setObs(obs);
                 agenda.setResultado(resultado);
-                
+
                 em.getTransaction().begin();
                 em.persist(agenda);
                 em.getTransaction().commit();
             }
         } catch (Exception e) {
-            if (em.getTransaction().isActive())
+            if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
+            }
         }
     }
-    
-    public List<AgendaDAO> getAgendamentos(){
+
+    public List<AgendaDAO> getAgendamentos() {
         EntityManager em = conectar();
         try {
             Query q = em.createQuery("SELECT a FROM Agenda a");
             List<Agenda> a = q.getResultList();
             List<AgendaDAO> agenda = new ArrayList<AgendaDAO>();
-            for (Agenda ag: a){
+            for (Agenda ag : a) {
                 AgendaPK apk = ag.getAgendaPK();
-                agenda.add(new AgendaDAO(apk.getDataHora(), apk.getIdPaciente(), apk.getIdMedico(), apk.getIdExame(), 
+                agenda.add(new AgendaDAO(apk.getDataHora(), apk.getIdPaciente(), apk.getIdMedico(), apk.getIdExame(),
                         ag.getObs(), ag.getResultado()));
             }
             return agenda;
         } catch (Exception e) {
-            if (em.getTransaction().isActive())
+            if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
+            }
             return null;
         }
     }
-    
-    public void alterar(){
-    
-    }
-    
-    public void remove(){
+
+    public void alterar() {
         EntityManager em = conectar();
         try {
             AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
             Agenda agenda = em.find(Agenda.class, agendaPK);
-            
+            agenda.setObs(obs);
+            agenda.setResultado(resultado);
+
+            em.getTransaction().begin();
+            em.persist(agenda);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        }
+    }
+
+    public void remove() {
+        EntityManager em = conectar();
+        try {
+            AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
+            Agenda agenda = em.find(Agenda.class, agendaPK);
+
             em.getTransaction().begin();
             em.remove(agenda);
             em.getTransaction().commit();
         } catch (Exception e) {
-            if (em.getTransaction().isActive())
+            if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
+            }
         }
     }
-    
 }

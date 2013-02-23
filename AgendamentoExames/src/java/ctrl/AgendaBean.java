@@ -140,7 +140,8 @@ public class AgendaBean {
     }
     
     public void alterar(){
-        
+        AgendaDAO agendaDAO = new AgendaDAO(dataHora, idPaciente, idMedico, idExame);
+        agendaDAO.alterar();
     }
 
     public String remove() throws ParseException {

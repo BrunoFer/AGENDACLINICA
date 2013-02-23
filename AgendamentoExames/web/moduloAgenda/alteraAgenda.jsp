@@ -22,21 +22,13 @@
 
             <h:form id="altera">
                 
-                Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText><br>
+                Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}"/><br>
                 
-                Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
-                    <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
-                </h:selectOneMenu><br>
+                Médico: <h:outputText value="#{Agenda.idMedico}" id="idMedico"/><br>
                 
-                Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
-                    <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
-                </h:selectOneMenu><br>
+                Exame: <h:outputText value="#{Agenda.idExame}" id="idExame"/><br>
                 
-                Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
-                    <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
-                </h:selectOneMenu><br>
+                Paciente: <h:outputText value="#{Agenda.idPaciente}" id="idPaciente"/><br>
                 
                 Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
                 Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
