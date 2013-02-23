@@ -24,7 +24,7 @@
                 background-color: #ccccff;
             }
             .colunaBotoes{
-                width: 45px;
+                width: 40px;
                 text-align: center;
                 background-color: #ffffff;
             }
@@ -34,9 +34,9 @@
         <f:view>
 
             <h:form>
-                
+
                 <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" border="2"
-                             width="50%" columnClasses="colunas, colunas, colunas, colunas, colunas, colunas, colunaBotoes, colunaBotoes"
+                             width="70%" columnClasses="colunas, colunas, colunas, colunas, colunas, colunas, colunaBotoes, colunaBotoes"
                              headerClass="cabecalho">
                     <f:facet name="header">
                         <h:outputText value="Tabela de Agendamentos" />
@@ -44,48 +44,48 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Data/Hora">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputText>
+                            <h:outputText value="Data/Hora"/>
                         </f:facet>
-                        <h:outputText value="#{agenda.dataHora}"/>
+                        <h:outputText value="#{agenda.dataHora}">
+                            <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="IdPaciente"/>
+                            <h:outputText value="Paciente"/>
                         </f:facet>
-                        <h:outputText value="#{agenda.idPaciente}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdExame"/>
-                        </f:facet>
-                        <h:outputText value="#{agenda.idExame}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="IdMedico"/>
-                        </f:facet>
-                        <h:outputText value="#{agenda.idMedico}"/>
+                        <h:outputFormat value="#{agenda.pacienteBean.nome}"/>
                     </h:column>
                     
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Exame"/>
+                        </f:facet>
+                        <h:outputText value="#{agenda.exameBean.nome}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Medico"/>
+                        </f:facet>
+                        <h:outputText value="#{agenda.medicoBean.nome}"/>
+                    </h:column>
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Observações"/>
                         </f:facet>
                         <h:outputText value="#{agenda.obs}"/>
                     </h:column>
-                    
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="resultado"/>
                         </f:facet>
                         <h:outputText value="#{agenda.resultado}"/>
                     </h:column>
-                    
+
                     <h:column>
                         <h:commandButton action="#{Agenda.remove()}" value="Excluir">
                             <f:param name="dataHora" value="#{agenda.dataHora}"/>
@@ -106,10 +106,10 @@
                 </h:dataTable>
 
                 <br/><br/>
-                <a href="index.jsp">Voltar para página inicial...</a>
+                <a href="../index.jsp">Voltar para página inicial...</a>
 
             </h:form>
-                
+
         </f:view>
     </body>
 </html>
