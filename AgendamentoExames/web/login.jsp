@@ -24,11 +24,14 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
-        <h1>Login no sistema</h1><br>
-        <form action="login.jsp" method="post">
-            Usuário: <input type="text" name="user"/><br>
-            Senha: <input type="password" name="senha"/><br><br>
-            <input type="submit" value="Logar" class="btn"/>
-        </form>
+        
+        <div class="container">
+            <h1>Login no sistema</h1><br>
+            <form action="login.jsp" method="post">
+                Usuário: <input type="text" name="user"/><br>
+                Senha: <input type="password" name="senha"/><br><br>
+                <input type="submit" value="Logar" class="btn"/>
+            </form>
+        </div>
     </body>
 </html>
