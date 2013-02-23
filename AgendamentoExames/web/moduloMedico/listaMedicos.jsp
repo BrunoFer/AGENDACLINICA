@@ -73,7 +73,7 @@
                 </h:dataTable>
 
                 <br/><br/>
-                <h:commandLink action="../index.jsp" value="Página inicial"/>
+                <a href="../../index.jsp">Página inicial</a>
 
             </h:form>
                 

@@ -106,7 +106,7 @@
                 </h:dataTable>
 
                 <br/><br/>
-                <a href="../index.jsp">Voltar para página inicial...</a>
+                <a href="../../index.jsp">Página inicial</a>
 
             </h:form>
 
