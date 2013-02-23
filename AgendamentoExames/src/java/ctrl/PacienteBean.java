@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ctrl;
 
 import dao.PacienteDAO;
@@ -28,7 +25,7 @@ public class PacienteBean {
     private String uf;
     private List<PacienteBean> pacientesBean = new ArrayList<PacienteBean>();
     private List<SelectItem> pacientes = new ArrayList<SelectItem>();
-    
+
     public PacienteBean() {
     }
 
@@ -111,7 +108,7 @@ public class PacienteBean {
         PacienteDAO paciente = new PacienteDAO();
         pacientes.removeAll(pacientes);
         for (PacienteDAO p : paciente.getPacientes()) {
-            pacientes.add(new SelectItem(p.getId(),p.getNome()));
+            pacientes.add(new SelectItem(p.getId(), p.getNome()));
         }
         return pacientes;
     }
@@ -180,5 +177,14 @@ public class PacienteBean {
         this.uf = pacientesBean.get(i).uf;
 
         return "carrega";
+    }
+
+    public PacienteBean getPaciente() {
+        PacienteDAO pacienteDAO = new PacienteDAO(id);
+        pacienteDAO = pacienteDAO.getPaciente();
+        PacienteBean paciente = new PacienteBean(pacienteDAO.getId(), pacienteDAO.getNome(), pacienteDAO.getDataNasc(),
+                pacienteDAO.getLogradouro(), pacienteDAO.getNumero(), pacienteDAO.getBairro(),
+                pacienteDAO.getCidade(), pacienteDAO.getUf());
+        return paciente;
     }
 }
