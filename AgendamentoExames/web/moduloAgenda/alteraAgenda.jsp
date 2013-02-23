@@ -15,33 +15,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Altera Agenda</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        <f:view>
-            <h1>Alterar Agendamento</h1>
+        <%@include file="../header2.jsp"%>
 
-            <h:form id="altera">
-                
-                Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}">
-                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
-                </h:outputText><br>
-                
-                Médico: <h:outputText value="#{Agenda.idMedico}" id="idMedico"/><br>
-                
-                Exame: <h:outputText value="#{Agenda.idExame}" id="idExame"/><br>
-                
-                Paciente: <h:outputText value="#{Agenda.idPaciente}" id="idPaciente"/><br>
-                
-                Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
-                
-                <h:commandButton action="#{Agenda.alterar()}" value="Alterar"/>
-                
-                <br/><br/>
-                <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
-                
-            </h:form>
-                
+        <f:view>
+            <div class="body">
+                <h:form id="altera">
+
+                    <h2>Alterar agendamento</h2>
+                    Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}">
+                        <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                    </h:outputText><br>
+
+                    Médico: <h:outputText value="#{Agenda.medicoBean.nome}" id="nomeMedico"/><br>
+
+                    Exame: <h:outputText value="#{Agenda.exameBean.nome}" id="idExame"/><br>
+
+                    Paciente: <h:outputText value="#{Agenda.pacienteBean.nome}" id="idPaciente"/><br>
+
+                    Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
+                    Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
+
+                    <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
+
+                    <br/><br/>
+                    <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
+
+                </h:form>
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

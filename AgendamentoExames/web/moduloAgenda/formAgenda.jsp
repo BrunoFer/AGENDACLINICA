@@ -13,36 +13,46 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Exames de Paciente</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
+            <div class="body">
+                <h:form id="cadastro" prependId="false">
 
-            <h:form id="cadastro">
+                    <h2>Agendamento de exame:</h2>
 
-                <h1>Agendamento de exame:</h1><br>
-                
-                Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText><br>
-                
-                Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
-                    <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
-                </h:selectOneMenu><br>
-                
-                Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
-                    <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
-                </h:selectOneMenu><br>
-                
-                Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
-                    <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
-                </h:selectOneMenu><br>
-                
-                Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
-                
-                <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar"/>
+                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:inputText><br>
 
-            </h:form>
+                        Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
+                            <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
+                        </h:selectOneMenu><br>
+
+                        Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
+                            <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
+                        </h:selectOneMenu><br>
+
+                        Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
+                            <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
+                        </h:selectOneMenu><br>
+
+                        Obs.:<h:inputText value="#{Agenda.obs}" id="obs"/><br>
+                        Resultado: <br>
+                        <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
+
+                        <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar" styleClass="btn"/>
+
+                </h:form>
+            
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
