@@ -87,8 +87,12 @@
                     </h:column>
                     
                     <h:column>
-                        <h:commandButton action="#{Agenda.remove(agenda.dataHora,agenda.idPaciente,agenda.idExame,
-                                                   agenda.idMedico)}" value="Excluir"/>
+                        <h:commandButton action="#{Agenda.remove()}" value="Excluir">
+                            <f:param name="dataHora" value="#{agenda.dataHora}"/>
+                            <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
+                            <f:param name="idExame" value="#{agenda.idExame}"/>
+                            <f:param name="idMedico" value="#{agenda.idMedico}"/>
+                        </h:commandButton>
                     </h:column>
 
                     <h:column>

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -139,7 +138,28 @@ public class AgendaBean {
         
         return "carrega";
     }
+    
+    public void alterar(){
+        
+    }
 
-    public void remove(Date data, Integer idPac, Integer idExa, Integer idMed) {
+    public String remove() throws ParseException {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String dataStr = parametros.get("dataHora").toString();
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
+        Date data2 = inputFormat.parse(dataStr);
+            
+        String idPac = parametros.get("idPaciente").toString();
+        Integer idPac2 = Integer.parseInt(idPac);
+        
+        String idMed = parametros.get("idMedico").toString();
+        Integer idMed2 = Integer.parseInt(idMed);
+        
+        String idExa = parametros.get("idExame").toString();
+        Integer idExa2 = Integer.parseInt(idExa);
+        
+        AgendaDAO agendaDAO = new AgendaDAO(data2, idPac2, idMed2, idExa2);
+        agendaDAO.remove();
+        return "";
     }
 }

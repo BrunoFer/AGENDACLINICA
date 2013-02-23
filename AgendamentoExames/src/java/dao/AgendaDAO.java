@@ -23,6 +23,13 @@ public class AgendaDAO {
 
     public AgendaDAO() {
     }
+    
+    public AgendaDAO(Date dataHora, Integer idPaciente, Integer idMedico, Integer idExame) {
+        this.dataHora = dataHora;
+        this.idPaciente = idPaciente;
+        this.idMedico = idMedico;
+        this.idExame = idExame;
+    }
 
     public AgendaDAO(Date dataHora, Integer idPaciente, Integer idMedico, Integer idExame, String obs, String resultado) {
         this.dataHora = dataHora;
@@ -126,4 +133,24 @@ public class AgendaDAO {
             return null;
         }
     }
+    
+    public void alterar(){
+    
+    }
+    
+    public void remove(){
+        EntityManager em = conectar();
+        try {
+            AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
+            Agenda agenda = em.find(Agenda.class, agendaPK);
+            
+            em.getTransaction().begin();
+            em.remove(agenda);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
+        }
+    }
+    
 }
