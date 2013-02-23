@@ -74,7 +74,7 @@
                 </h:dataTable>
 
                 <br/><br/>
-                <a href="../index.jsp">Voltar para página inicial...</a>
+                <h:commandLink action="../index.jsp" value="Página inicial"/>
 
             </h:form>
                 

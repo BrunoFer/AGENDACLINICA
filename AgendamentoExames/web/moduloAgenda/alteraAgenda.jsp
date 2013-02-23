@@ -22,7 +22,9 @@
 
             <h:form id="altera">
                 
-                Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}"/><br>
+                Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}">
+                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                </h:outputText><br>
                 
                 Médico: <h:outputText value="#{Agenda.idMedico}" id="idMedico"/><br>
                 
@@ -34,6 +36,9 @@
                 Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
                 
                 <h:commandButton action="#{Agenda.alterar()}" value="Alterar"/>
+                
+                <br/><br/>
+                <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
                 
             </h:form>
                 
