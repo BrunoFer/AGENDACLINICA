@@ -19,24 +19,27 @@
         <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="../header2.jsp"%>
 
         <f:view>
-            <div class="body">
-            <h2>Alterar médico</h2>
+            <div class="container">
+                <%@include file="../header2.jsp"%>
 
-            <h:form id="altera" prependId="false" styleClass="form-actions">
+                <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
-                CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br>
-                
-                <h:commandButton action="#{Medico.alterar()}" value="Alterar"/><br><br>
-                
-                <h:commandLink action="listaMedicos.jsp" value="Lista de médicos"/>
-                
-            </h:form>
-      </div>
+                    <h2>Alterar médico</h2>
+                    Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
+                    CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br>
+
+                    <h:commandButton action="#{Medico.alterar()}" value="Alterar"/><br><br>
+
+                    <h:commandLink action="listaMedicos.jsp" value="Lista de médicos"/>
+
+                </h:form>
+                    
+            </div>
         </f:view>
+
+        <%@include file="../footer.jsp"%>
 
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
