@@ -18,10 +18,11 @@
         <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="../header2.jsp"%>
-
+        
         <f:view>
-            <div class="body">
+            <div class="container">
+                <%@include file="../header2.jsp"%>
+
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Médico</h2><br>
@@ -32,10 +33,14 @@
                     <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
                 </h:form>
+
             </div>
         </f:view>
 
+        <%@include file="../footer.jsp"%>
+
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        
     </body>
 </html>

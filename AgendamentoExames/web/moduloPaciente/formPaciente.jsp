@@ -23,21 +23,22 @@
         </script>
     </head>
     <body>
-        <%@include file="../header2.jsp"%>
 
         <f:view>
-            <div class="body">
+            <div class="container">
+                <%@include file="../header2.jsp"%>
+
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Paciente:</h2>
 
                     Nome: <h:inputText id="nome" value="#{Paciente.nome}" required="true" 
                                  immediate="true">
-                        <f:validator validatorId="nomeValidator"/>
+                        <%--<f:validator validatorId="nomeValidator"/>--%>
                     </h:inputText>
                     <h:message for="nome"/><br>
                     Data de nascimento: <h:inputText id="dataNasc" value="#{Paciente.dataNasc}" 
-                                 required="true" immediate="true" styleClass="dataNasc">
+                                 required="true" immediate="true">
                         <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
                     </h:inputText><br>
                     Logradouro: <h:inputText id="logradouro" value="#{Paciente.logradouro}"/><br>
@@ -77,9 +78,11 @@
                     <h:commandButton action="#{Paciente.cadastrar()}" value="Cadastrar" styleClass="btn"/>
                     <br><br>
                 </h:form>
-            </div>
 
+            </div>
         </f:view>
+
+        <%@include file="../footer.jsp"%>
 
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>

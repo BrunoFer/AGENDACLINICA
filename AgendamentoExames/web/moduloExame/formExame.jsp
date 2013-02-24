@@ -18,15 +18,15 @@
         <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="../header2.jsp"%>
 
         <f:view>
-            <div class="body">
+            <div class="container">
+                <%@include file="../header2.jsp"%>
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Exames</h2><br>
-                    
+
                     Nome: <h:inputText id="nome" value="#{Exame.nome}"/><br>
                     Valor: <h:inputText id="valor" value="#{Exame.valor}"/><br><br>
 
@@ -36,6 +36,8 @@
 
             </div>
         </f:view>
+
+        <%@include file="../footer.jsp"%>
 
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
