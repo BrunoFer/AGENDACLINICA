@@ -29,7 +29,7 @@
                     Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
                     CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br><br>
 
-                    <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar"/>
+                    <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
                 </h:form>
             </div>
