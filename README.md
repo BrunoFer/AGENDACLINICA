@@ -1,4 +1,4 @@
-Agendamento de Exames
+AGENDACLINICA
 ==================
 
 <b>Descricao:</b> Aplicação Web para controle de agendamento de exames.<br>
