@@ -24,7 +24,7 @@
         <f:view>
             <div class="body">
 
-                <h:form id="altera">
+                <h:form id="altera" prependId="false" styleClass="form-actions">
 
                     <h2>Alterar Paciente</h2>
                     Nome: <h:inputText value="#{Paciente.nome}" id="nome"/><br>

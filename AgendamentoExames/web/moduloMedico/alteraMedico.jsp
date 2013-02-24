@@ -25,7 +25,7 @@
             <div class="body">
             <h2>Alterar médico</h2>
 
-            <h:form id="altera">
+            <h:form id="altera" prependId="false" styleClass="form-actions">
 
                 Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
                 CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br>

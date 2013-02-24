@@ -23,7 +23,7 @@
 
         <f:view>
             <div class="body">
-                <h:form id="altera">
+                <h:form id="altera" prependId="false" styleClass="form-actions">
 
                     <h2>Alterar agendamento</h2>
                     Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">

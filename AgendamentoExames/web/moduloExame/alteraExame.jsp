@@ -15,21 +15,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Altera Exame</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
-            <h1>Alterar Exame</h1>
+            <div class="body">
+                <h2>Alterar Exame</h2>
 
-            <h:form id="altera">
+                <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                Nome: <h:inputText value="#{Exame.nome}" id="nome"/><br>
-                Valor: <h:inputText value="#{Exame.valor}" id="valor"/><br>
-                
-                <h:commandButton action="#{Exame.alterar()}" value="Alterar"/><br><br>
-                
-                <h:commandLink action="listaExames.jsp" value="Lista de exames"/>
-                
-            </h:form>
+                    Nome: <h:inputText value="#{Exame.nome}" id="nome"/><br>
+                    Valor: <h:inputText value="#{Exame.valor}" id="valor"/><br>
+
+                    <h:commandButton action="#{Exame.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+
+                    <h:commandLink action="listaExames.jsp" value="Lista de exames"/>
+
+                </h:form>
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
