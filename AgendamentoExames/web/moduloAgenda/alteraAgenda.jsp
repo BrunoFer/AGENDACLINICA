@@ -26,15 +26,15 @@
                 <h:form id="altera">
 
                     <h2>Alterar agendamento</h2>
-                    Data: <h:outputText id="dataHora" value="#{Agenda.dataHora}">
+                    Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
                         <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
-                    </h:outputText><br>
+                    </h:inputText><br>
 
-                    Médico: <h:outputText value="#{Agenda.medicoBean.nome}" id="nomeMedico"/><br>
+                    Médico: <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/><br>
 
-                    Exame: <h:outputText value="#{Agenda.exameBean.nome}" id="idExame"/><br>
+                    Exame: <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/><br>
 
-                    Paciente: <h:outputText value="#{Agenda.pacienteBean.nome}" id="idPaciente"/><br>
+                    Paciente: <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/><br>
 
                     Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
                     Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
