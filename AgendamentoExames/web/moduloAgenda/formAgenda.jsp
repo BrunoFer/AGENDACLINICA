@@ -21,7 +21,8 @@
 
         <f:view>
             <div class="body">
-                <h:form id="cadastro" prependId="false">
+                
+                <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Agendamento de exame:</h2>
 

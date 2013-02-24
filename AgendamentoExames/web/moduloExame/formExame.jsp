@@ -14,20 +14,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro de Exame</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
+            <div class="body">
 
-            <h:form>
+                <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
-                <h1>Cadastro de Exames</h1><br>
-                Nome: <h:inputText id="nome" value="#{Exame.nome}"/><br>
-                Valor: <h:inputText id="valor" value="#{Exame.valor}"/><br><br>
-                
-                <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar"/>
+                    <h2>Cadastro de Exames</h2><br>
+                    
+                    Nome: <h:inputText id="nome" value="#{Exame.nome}"/><br>
+                    Valor: <h:inputText id="valor" value="#{Exame.valor}"/><br><br>
 
-            </h:form>
+                    <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
+                </h:form>
+
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

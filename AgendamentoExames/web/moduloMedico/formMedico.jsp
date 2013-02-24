@@ -22,7 +22,7 @@
 
         <f:view>
             <div class="body">
-                <h:form id="cadastro">
+                <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Médico</h2><br>
 
