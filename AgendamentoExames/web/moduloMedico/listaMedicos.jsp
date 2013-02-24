@@ -18,11 +18,10 @@
         <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="../header2.jsp"%>
 
         <f:view>
-            <div class="body">
-
+            <div class="container">
+                <%@include file="../header2.jsp"%>
                 <h:form>
 
                     <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" 
@@ -65,8 +64,10 @@
                     <a href="../index.jsp">Página inicial</a>
 
                 </h:form>
-            </div>
+           </div>
         </f:view>
+        
+        <%@include file="../footer.jsp"%>
 
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>

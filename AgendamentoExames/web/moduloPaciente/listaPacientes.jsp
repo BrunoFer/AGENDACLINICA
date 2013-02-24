@@ -19,10 +19,12 @@
     </head>
     <body>
 
-        <%@include file="../header2.jsp"%>
-
         <f:view>
-            <div class="body">
+
+            <div class="container">
+                <%@include file="../header2.jsp"%>
+
+
                 <h:form>
 
                     <h:dataTable value="#{Paciente.listaPacientes()}" var="paciente" id="listaPacientes" 
@@ -97,10 +99,16 @@
                             <h:commandButton action="#{Paciente.loadPaciente(paciente.id)}" value="Alterar" styleClass="btn"/>
                         </h:column>
                     </h:dataTable>
+                    
+                    <br/><br/>
+                    <a href="../index.jsp">Página inicial</a>
 
                 </h:form>
+
             </div>
         </f:view>
+        
+        <%@include file="../footer.jsp"%>
 
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
