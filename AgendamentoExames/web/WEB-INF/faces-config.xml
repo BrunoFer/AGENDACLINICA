@@ -12,7 +12,7 @@
         <managed-bean-class>ctrl.PacienteBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-
+    
     <managed-bean>
         <managed-bean-name>Medico</managed-bean-name>
         <managed-bean-class>ctrl.MedicoBean</managed-bean-class>

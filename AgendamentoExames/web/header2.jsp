@@ -41,7 +41,12 @@
                     <li><a tabindex="-1" href="../moduloAgenda/listaAgenda.jsp">Agendamentos</a></li>
                 </ul>
             </li>
-
         </ul>
+        <div class="pull-right">
+            <a href="../../j_spring_security_logout" class="pull-right">
+                <button class="btn btn-small btn-inverse">LogOff</button>
+            </a>
+        </div>
     </div>
 </div>
+

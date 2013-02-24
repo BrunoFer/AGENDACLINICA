@@ -13,7 +13,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
-        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <div class="container">
 
@@ -50,10 +50,14 @@
                             <li><a tabindex="-1" href="moduloAgenda/listaAgenda.jsp">Agendamentos</a></li>
                         </ul>
                     </li>
-
                 </ul>
+                <div class="pull-right">
+                    <a href="../j_spring_security_logout" class="pull-right">
+                        <button class="btn btn-small btn-inverse">LogOff</button>
+                    </a>
+                </div>
             </div>
-            
+
         </div>
     </body>
 </html>

@@ -4,17 +4,6 @@
     Author     : bruno
 --%>
 
-<%
-    String user = request.getParameter("user");
-    String senha = request.getParameter("senha");
-
-    if (senha != null && user != null) {
-        if (user.equals("bruno") && senha.equals("123")) {
-            response.sendRedirect("faces/index.jsp");
-        }
-    }
-%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,9 +16,22 @@
     <body>
         <div class="login">
             <h2>Faça o login</h2><br>
-            <form action="login.jsp" method="post">
-                Usuário: <input type="text" name="user"/><br>
-                Senha: <input type="password" name="senha"/><br><br>
+            <%
+                if (request.getParameter("error") != null) {
+                    if (request.getParameter("error").equals("invalido")) {
+            %>
+            <p>
+                <span style="color:red">
+                    Usuário ou Senha inválidos
+                </span>
+            </p>
+            <%        } //fim do if equals
+                }//fim do if null
+            %>
+            <form action="j_spring_security_check" method="post">
+                Usuário: <input type="text" name="j_username" id="j_username" 
+                                value="${not empty login_error ? SPRING_SECURITY_LAST_USERNAME : ''}"/><br>
+                Senha: <input type="password" name="j_password" id="j_password"/><br><br>
                 <input type="submit" value="Logar" class="btn"/><br>
             </form>
         </div>
