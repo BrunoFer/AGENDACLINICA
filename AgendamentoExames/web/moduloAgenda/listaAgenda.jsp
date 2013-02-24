@@ -24,14 +24,13 @@
             <div class="body">
                 <h:form>
 
-                    <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" border="2"
-                                 width="70%" columnClasses="colunas, colunas, colunas, colunas, colunas, colunas, colunaBotoes, colunaBotoes"
-                                 headerClass="cabecalho">
+                    <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
+                                 border="1" styleClass="table">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Agendamentos" />
                         </f:facet>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Data/Hora"/>
                             </f:facet>
@@ -40,42 +39,42 @@
                             </h:outputText>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Paciente"/>
                             </f:facet>
                             <h:outputFormat value="#{agenda.pacienteBean.nome}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Exame"/>
                             </f:facet>
                             <h:outputText value="#{agenda.exameBean.nome}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Medico"/>
                             </f:facet>
                             <h:outputText value="#{agenda.medicoBean.nome}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Observações"/>
                             </f:facet>
                             <h:outputText value="#{agenda.obs}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="resultado"/>
                             </f:facet>
                             <h:outputText value="#{agenda.resultado}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <h:commandButton action="#{Agenda.remove()}" value="Excluir" styleClass="btn">
                                 <f:param name="dataHora" value="#{agenda.dataHora}"/>
                                 <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
@@ -84,7 +83,7 @@
                             </h:commandButton>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <h:commandButton action="#{Agenda.loadAgendamento()}" value="Alterar" styleClass="btn">
                                 <f:param name="dataHora" value="#{agenda.dataHora}"/>
                                 <f:param name="idPaciente" value="#{agenda.idPaciente}"/>

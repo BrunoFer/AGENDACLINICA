@@ -14,70 +14,61 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de clientes</title>
-        <style>
-            .cabecalho{
-                background-color: #33ff00;
-            }
-            
-            .colunas{
-                text-align: center;
-                width: 100px;
-                background-color: #ccccff;
-            }
-            .colunaBotoes{
-                width: 45px;
-                text-align: center;
-                background-color: #ffffff;
-            }
-        </style>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="../css/style.css" rel="stylesheet"/>
     </head>
     <body>
+        <%@include file="../header2.jsp"%>
+
         <f:view>
+            <div class="body">
+                <h:form>
 
-            <h:form>
-                
-                <h:dataTable value="#{Exame.listaExames()}" var="exame" id="listaExames" border="2"
-                             width="50%" columnClasses="colunas, colunas, colunas, colunaBotoes, colunaBotoes"
-                             headerClass="cabecalho">
-                    <f:facet name="header">
-                        <h:outputText value="Tabela de Exames" />
-                    </f:facet>
-
-                    <h:column>
+                    <h:dataTable value="#{Exame.listaExames()}" var="exame" id="listaExames" 
+                                 border="2" styleClass="table">
                         <f:facet name="header">
-                            <h:outputText value="ID"/>
+                            <h:outputText value="Tabela de Exames" />
                         </f:facet>
-                        <h:outputText value="#{exame.idExame}"/>
-                    </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText value="#{exame.nome}"/>
-                    </h:column>
+                        <h:column headerClass="colunas">
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{exame.idExame}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
-                        <h:outputText value="#{exame.valor}"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <h:commandButton action="#{Exame.remove(exame.idExame)}" value="Excluir"/>
-                    </h:column>
+                        <h:column headerClass="colunas">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{exame.nome}"/>
+                        </h:column>
 
-                    <h:column>
-                        <h:commandButton action="#{Exame.loadExame(exame.idExame)}" value="Alterar"/>
-                    </h:column>
-                </h:dataTable>
+                        <h:column headerClass="colunas">
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="#{exame.valor}"/>
+                        </h:column>
 
-                <br/><br/>
-                <a href="../index.jsp">Página inicial</a>
+                        <h:column headerClass="colunas">
+                            <h:commandButton action="#{Exame.remove(exame.idExame)}" value="Excluir" styleClass="btn"/>
+                        </h:column>
 
-            </h:form>
-                
+                        <h:column headerClass="colunas">
+                            <h:commandButton action="#{Exame.loadExame(exame.idExame)}" value="Alterar" styleClass="btn"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br/><br/>
+                    <a href="../index.jsp">Página inicial</a>
+
+                </h:form>
+
+            </div>
         </f:view>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

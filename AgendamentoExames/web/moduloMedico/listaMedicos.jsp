@@ -25,39 +25,38 @@
 
                 <h:form>
 
-                    <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" border="2"
-                                 width="50%" columnClasses="colunas, colunas, colunas, colunaBotoes, colunaBotoes"
-                                 headerClass="cabecalho">
+                    <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" 
+                                 border="1" styleClass="table">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Médicos" />
                         </f:facet>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="ID"/>
                             </f:facet>
                             <h:outputText value="#{medico.idMedico}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Nome"/>
                             </f:facet>
                             <h:outputText value="#{medico.nome}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="CRM"/>
                             </f:facet>
                             <h:outputText value="#{medico.crm}"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <h:commandButton action="#{Medico.remove(medico.idMedico)}" value="Excluir" styleClass="btn"/>
                         </h:column>
 
-                        <h:column>
+                        <h:column headerClass="colunas">
                             <h:commandButton action="#{Medico.loadMedico(medico.idMedico)}" value="Alterar" styleClass="btn"/>
                         </h:column>
                     </h:dataTable>

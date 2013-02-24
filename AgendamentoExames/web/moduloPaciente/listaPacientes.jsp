@@ -25,8 +25,8 @@
             <div class="body">
                 <h:form>
 
-                    <h:dataTable value="#{Paciente.listaPacientes()}" var="paciente" id="listaPacientes" border="2"
-                                 width="50%" headerClass="cabecalho">
+                    <h:dataTable value="#{Paciente.listaPacientes()}" var="paciente" id="listaPacientes" 
+                                 border="1" styleClass="table">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Pacientes"/>
                         </f:facet>
