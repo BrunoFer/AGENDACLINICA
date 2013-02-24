@@ -22,15 +22,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Agendamento de exames</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        
-        <div class="container">
-            <h1>Login no sistema</h1><br>
+        <div class="login">
+            <h2>Faça o login</h2><br>
             <form action="login.jsp" method="post">
                 Usuário: <input type="text" name="user"/><br>
                 Senha: <input type="password" name="senha"/><br><br>
-                <input type="submit" value="Logar" class="btn"/>
+                <input type="submit" value="Logar" class="btn"/><br>
             </form>
         </div>
     </body>
