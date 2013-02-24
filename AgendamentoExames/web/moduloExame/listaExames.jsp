@@ -25,7 +25,7 @@
                 <h:form>
 
                     <h:dataTable value="#{Exame.listaExames()}" var="exame" id="listaExames" 
-                                 border="2" styleClass="table">
+                                 border="2" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Exames" />
                         </f:facet>

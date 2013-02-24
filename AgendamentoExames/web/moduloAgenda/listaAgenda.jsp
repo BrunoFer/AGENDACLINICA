@@ -25,7 +25,7 @@
                 <h:form>
 
                     <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
-                                 border="1" styleClass="table">
+                                 border="1" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Agendamentos" />
                         </f:facet>
