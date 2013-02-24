@@ -94,7 +94,7 @@ public class AgendaDAO {
         return em;
     }
 
-    public void cadastrar() {
+    public boolean cadastrar() {
         System.out.println("passei aqui");
         System.out.println("Paciente: " + idPaciente + " - Medico: " + idMedico);
         EntityManager em = conectar();
@@ -109,11 +109,14 @@ public class AgendaDAO {
                 em.getTransaction().begin();
                 em.persist(agenda);
                 em.getTransaction().commit();
+                return true;
             }
+            return false;
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
+            return false;
         }
     }
 
@@ -171,4 +174,5 @@ public class AgendaDAO {
             }
         }
     }
+
 }

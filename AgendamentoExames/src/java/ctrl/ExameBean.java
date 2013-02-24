@@ -71,7 +71,8 @@ public class ExameBean {
             exame.setIdExame(idExame);
             exame.setNome(nome);
             exame.setValor(valor);
-            exame.cadastrar();
+            if (exame.cadastrar())
+                novo();
         }
     }
 
@@ -117,5 +118,11 @@ public class ExameBean {
         exameDAO = exameDAO.getExame();
         ExameBean exame = new ExameBean(exameDAO.getIdExame(), exameDAO.getNome(), exameDAO.getValor());
         return exame;
+    }
+    
+    public void novo(){
+        setIdExame(null);
+        setNome("");
+        setValor(null);
     }
 }

@@ -116,7 +116,8 @@ public class AgendaBean {
     public void cadastrar() {
         System.out.println("cheguei aqui agora");
         AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
-        agenda.cadastrar();
+        if (agenda.cadastrar())
+            novo();
     }
 
     public DataModel<AgendaBean> listaAgendamentos() {
@@ -180,6 +181,9 @@ public class AgendaBean {
         this.idExame = idExa2;
         this.obs = agendamentos.get(i).getObs();
         this.resultado = agendamentos.get(i).getResultado();
+        this.pacienteBean = agendamentos.get(i).getPacienteBean();
+        this.exameBean = agendamentos.get(i).getExameBean();
+        this.medicoBean = agendamentos.get(i).getMedicoBean();
         
         return "carrega";
     }
@@ -218,5 +222,14 @@ public class AgendaBean {
         AgendaDAO agendaDAO = new AgendaDAO(data2, idPac2, idMed2, idExa2);
         agendaDAO.remove();
         return "";
+    }
+    
+    public void novo(){
+        setDataHora(null);
+        setIdExame(null);
+        setIdMedico(null);
+        setIdPaciente(null);
+        setObs("");
+        setResultado("");
     }
 }

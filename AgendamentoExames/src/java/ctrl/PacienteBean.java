@@ -133,7 +133,8 @@ public class PacienteBean {
             paciente.setBairro(bairro);
             paciente.setCidade(cidade);
             paciente.setUf(uf);
-            paciente.cadastrar();
+            if (paciente.cadastrar())
+                novo();
         }
     }
 
@@ -186,5 +187,16 @@ public class PacienteBean {
                 pacienteDAO.getLogradouro(), pacienteDAO.getNumero(), pacienteDAO.getBairro(),
                 pacienteDAO.getCidade(), pacienteDAO.getUf());
         return paciente;
+    }
+    
+    public void novo(){
+        setNome("");
+        setDataNasc(null);
+        setId(null);
+        setLogradouro("");
+        setNumero(null);
+        setBairro("");
+        setCidade("");
+        setUf("");
     }
 }

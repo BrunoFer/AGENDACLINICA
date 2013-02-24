@@ -72,7 +72,8 @@ public class MedicoBean {
             medico.setIdMedico(null);
             medico.setNome(nome);
             medico.setCrm(crm);
-            medico.cadastrar();
+            if (medico.cadastrar())
+                novo();
         }
     }
 
@@ -120,4 +121,9 @@ public class MedicoBean {
         return medico;
     }
     
+    public void novo(){
+        setIdMedico(null);
+        setNome("");
+        setCrm("");
+    }
 }
