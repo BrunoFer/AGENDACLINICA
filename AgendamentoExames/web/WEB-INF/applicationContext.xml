@@ -8,7 +8,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     
-    <http auto-config="true">
+    <http auto-config="true" access-denied-page="/accessDenied.jsp">
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=invalido"
         default-target-url="/faces/index.jsp"/>
         <intercept-url pattern="/faces/**" access="ROLE_ADMIN"/>
@@ -30,7 +30,6 @@ users-by-username-query="SELECT username, password, 'true' as enable FROM users 
 authorities-by-username-query="SELECT username, authority FROM users WHERE username=?"/>
         </authentication-provider>
     </authentication-manager>
-    
     
 
 </beans:beans>
