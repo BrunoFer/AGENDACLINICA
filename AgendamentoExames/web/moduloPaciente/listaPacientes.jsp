@@ -52,7 +52,7 @@
                                 <h:outputText value="Data de Nascimento"/>
                             </f:facet>
                             <h:outputText value="#{paciente.dataNasc}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
                             </h:outputText>
                         </h:column>
 

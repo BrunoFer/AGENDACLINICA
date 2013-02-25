@@ -16,11 +16,7 @@
         <title>Cadastro de Paciente</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="../css/style.css" rel="stylesheet"/>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(",dataNasc").mask("99/99/9999 99:99:99");
-            });
-        </script>
+        
     </head>
     <body>
 
@@ -34,7 +30,6 @@
 
                     Nome: <h:inputText id="nome" value="#{Paciente.nome}" required="true" 
                                  immediate="true">
-                        <%--<f:validator validatorId="nomeValidator"/>--%>
                     </h:inputText>
                     <h:message for="nome"/><br>
                     Data de nascimento: <h:inputText id="dataNasc" value="#{Paciente.dataNasc}" 
