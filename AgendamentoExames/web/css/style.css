@@ -1,16 +1,8 @@
-.cabecalho{
-    background-color: #33ff00;
-}
 
 .colunas{    
     text-align: center;
     width: 100px;
     background-color: #ccccff;
-}
-.colunaBotoes{
-    width: 45px;
-    text-align: center;
-    background-color: #ffffff;
 }
 
 .body{
@@ -19,11 +11,6 @@
     left: 15%;
     width: 70%;
     background-color: #eee;
-}
-
-.erro{
-    color: red;
-    size: 10px;
 }
 
 .login{
@@ -56,4 +43,15 @@
     font-weight: bold;
     font-size: 15px;
     text-align: center;
+}
+
+#rodape {
+    position:absolute;
+    bottom:0px;
+    width:70%;
+    left: 15%;
+    text-align: center;
+    font-size: 11px;
+    background-color: #ddd;
+    clear:both;
 }
