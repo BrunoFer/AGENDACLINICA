@@ -32,37 +32,37 @@
     </managed-bean>
 
     <navigation-rule>
-        <from-view-id>/moduloExame/listaExames.jsp</from-view-id>
+        <from-view-id>/listaExames.jsp</from-view-id>
         <navigation-case>
             <from-outcome>carrega</from-outcome>
-            <to-view-id>/moduloExame/alteraExame.jsp</to-view-id>
+            <to-view-id>/alteraExame.jsp</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>/moduloPaciente/listaPacientes.jsp</from-view-id>
+        <from-view-id>/listaPacientes.jsp</from-view-id>
         <navigation-case>
             <from-outcome>carrega</from-outcome>
-            <to-view-id>/moduloPaciente/alteraPaciente.jsp</to-view-id>
+            <to-view-id>/formPaciente.jsp</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>/moduloMedico/listaMedicos.jsp</from-view-id>
+        <from-view-id>/listaMedicos.jsp</from-view-id>
         <navigation-case>
             <from-outcome>carrega</from-outcome>
-            <to-view-id>/moduloMedico/alteraMedico.jsp</to-view-id>
+            <to-view-id>/alteraMedico.jsp</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/moduloAgenda/listaAgenda.jsp</from-view-id>
+        <from-view-id>/listaAgenda.jsp</from-view-id>
         <navigation-case>
             <from-outcome>carrega</from-outcome>
-            <to-view-id>/moduloAgenda/alteraAgenda.jsp</to-view-id>
+            <to-view-id>/alteraAgenda.jsp</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

@@ -45,11 +45,10 @@
     text-align: center;
 }
 
-#rodape {
+footer {
     position:absolute;
     bottom:0px;
-    width:70%;
-    left: 15%;
+    width:100%;
     text-align: center;
     font-size: 11px;
     background-color: #ddd;

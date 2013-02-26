@@ -12,7 +12,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=invalido"
         default-target-url="/faces/index.jsp"/>
         <intercept-url pattern="/faces/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/index.jsp" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/faces/index.jsp" access="ROLE_USER, ROLE_ADMIN"/>
         <logout logout-success-url="/login.jsp"/>
     </http>
     

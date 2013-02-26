@@ -3238,7 +3238,7 @@ button.close {
 .btn.active {
   background-color: #cccccc \9;
 }
-
+horizontal
 .btn:first-child {
   *margin-left: 0;
 }
