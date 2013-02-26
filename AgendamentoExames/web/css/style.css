@@ -54,3 +54,12 @@ footer {
     background-color: #ddd;
     clear:both;
 }
+
+#box{
+    left:50%;
+    margin:200px 0 0 -100px; 
+    position:absolute; 
+    top:50%;
+    color: #f00;
+    width:100%;
+}

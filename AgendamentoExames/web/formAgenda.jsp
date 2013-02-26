@@ -21,7 +21,7 @@
             <div class="container">
                 <%@include file="header2.jsp"%>
                 
-                <h:form id="cadastro" prependId="false" styleClass="form-actions">
+                <h:form id="agendamento" prependId="false" styleClass="form-actions">
 
                     <h2>Agendamento de exame:</h2>
 
@@ -46,7 +46,11 @@
                         <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
 
                         <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar" styleClass="btn"/>
-
+                        
+                        <br>
+                        <div id="box">
+                            <h:messages for="agendamento"/>
+                        </div>
                 </h:form>
             
            </div>

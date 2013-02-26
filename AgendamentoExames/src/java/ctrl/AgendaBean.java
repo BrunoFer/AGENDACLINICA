@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -114,10 +115,18 @@ public class AgendaBean {
     }
 
     public void cadastrar() {
-        System.out.println("cheguei aqui agora");
+        System.out.println("Cheguei aqui agora");
         AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
-        if (agenda.cadastrar())
+        if (agenda.cadastrar()){
             novo();
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage mensagem = new FacesMessage("Cadastro realizada com sucesso!");
+            contexto.addMessage("agendamento", mensagem);
+        } else {
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage mensagem = new FacesMessage("Agendamento já existente!");
+            contexto.addMessage("agendamento", mensagem);
+        }
     }
 
     public DataModel<AgendaBean> listaAgendamentos() {

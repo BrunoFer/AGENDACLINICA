@@ -95,8 +95,6 @@ public class AgendaDAO {
     }
 
     public boolean cadastrar() {
-        System.out.println("passei aqui");
-        System.out.println("Paciente: " + idPaciente + " - Medico: " + idMedico);
         EntityManager em = conectar();
         try {
             if (em != null) {
