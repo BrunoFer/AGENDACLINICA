@@ -30,6 +30,12 @@
         <managed-bean-class>ctrl.AgendaBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>Relatorio</managed-bean-name>
+        <managed-bean-class>ctrl.Relatorio</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
     <navigation-rule>
         <from-view-id>/listaExames.jsp</from-view-id>
@@ -63,6 +69,22 @@
         <navigation-case>
             <from-outcome>carrega</from-outcome>
             <to-view-id>/alteraAgenda.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/formRelatorio.jsp</from-view-id>
+        
+        <navigation-case>
+            <from-outcome>periodo</from-outcome>
+            <to-view-id>/relatorioPeriodo.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>valor</from-outcome>
+            <to-view-id>/relatorioValor.jsp</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

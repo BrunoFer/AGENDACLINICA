@@ -122,9 +122,10 @@ public class AgendaBean {
 
     public DataModel<AgendaBean> listaAgendamentos() {
         AgendaDAO ag = new AgendaDAO();
-        if (ag.getAgendamentos() != null) {
+        List<AgendaDAO> listaAgenda = ag.getAgendamentos("SELECT a FROM Agenda a");
+        if (listaAgenda != null) {
             agendamentos.removeAll(agendamentos);
-            for (AgendaDAO a : ag.getAgendamentos()) {
+            for (AgendaDAO a : listaAgenda) {
                 AgendaBean agenda = new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
                         a.getObs(), a.getResultado());
                 

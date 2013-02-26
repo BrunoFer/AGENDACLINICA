@@ -24,7 +24,7 @@
                 <%@include file="header.jsp"%>
                 <h:form>
 
-                    <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
+                    <h:dataTable value="#{Relatorio.listaAgendamentos(1)}" var="rel" id="listaAgendamentos" 
                                  border="1" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Relatório por período" />
@@ -32,78 +32,45 @@
 
                         <h:column headerClass="colunas">
                             <f:facet name="header">
-                                <h:outputText value="Data/Hora"/>
+                                <h:outputText value="Código do exame"/>
                             </f:facet>
-                            <h:outputText value="#{agenda.dataHora}">
-                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-                            </h:outputText>
+                            <h:outputText value="#{rel.exame.idExame}"/>
+                        </h:column>
+                        
+                        <h:column headerClass="colunas">
+                            <f:facet name="header">
+                                <h:outputText value="Exame"/>
+                            </f:facet>
+                            <h:outputText value="#{rel.exame.nome}"/>
+                        </h:column>
+
+                        <h:column headerClass="colunas">
+                            <f:facet name="header">
+                                <h:outputText value="Data"/>
+                            </f:facet>
+                            <h:outputFormat value="#{rel.agenda.dataHora}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputFormat>
                         </h:column>
 
                         <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Paciente"/>
                             </f:facet>
-                            <h:outputFormat value="#{agenda.pacienteBean.nome}"/>
+                            <h:outputText value="#{rel.paciente.nome}"/>
                         </h:column>
 
-                        <h:column headerClass="colunas">
-                            <f:facet name="header">
-                                <h:outputText value="Exame"/>
-                            </f:facet>
-                            <h:outputText value="#{agenda.exameBean.nome}"/>
-                        </h:column>
-
-                        <h:column headerClass="colunas">
-                            <f:facet name="header">
-                                <h:outputText value="Medico"/>
-                            </f:facet>
-                            <h:outputText value="#{agenda.medicoBean.nome}"/>
-                        </h:column>
-
-                        <h:column headerClass="colunas">
-                            <f:facet name="header">
-                                <h:outputText value="Observações"/>
-                            </f:facet>
-                            <h:outputText value="#{agenda.obs}"/>
-                        </h:column>
-
-                        <h:column headerClass="colunas">
-                            <f:facet name="header">
-                                <h:outputText value="resultado"/>
-                            </f:facet>
-                            <h:outputText value="#{agenda.resultado}"/>
-                        </h:column>
-
-                        <h:column headerClass="colunas">
-                            <h:commandButton action="#{Agenda.remove()}" value="Excluir" styleClass="btn">
-                                <f:param name="dataHora" value="#{agenda.dataHora}"/>
-                                <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
-                                <f:param name="idExame" value="#{agenda.idExame}"/>
-                                <f:param name="idMedico" value="#{agenda.idMedico}"/>
-                            </h:commandButton>
-                        </h:column>
-
-                        <h:column headerClass="colunas">
-                            <h:commandButton action="#{Agenda.loadAgendamento()}" value="Alterar" styleClass="btn">
-                                <f:param name="dataHora" value="#{agenda.dataHora}"/>
-                                <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
-                                <f:param name="idExame" value="#{agenda.idExame}"/>
-                                <f:param name="idMedico" value="#{agenda.idMedico}"/>
-                            </h:commandButton>
-                        </h:column>
                     </h:dataTable>
 
                     <br/><br/>
-                    <a href="../index.jsp">Página inicial</a>
+                    <a href="formRelatorio.jsp">Voltar</a>
 
                 </h:form>
 
             </div>
         </f:view>
 
-        <%@include file="../footer.jsp"%>
+        <%@include file="footer.jsp"%>
 
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

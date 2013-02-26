@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de Exames de Paciente</title>
+        <title>Relatórios</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet"/>
     </head>
@@ -20,36 +20,35 @@
         <f:view>
             <div class="container">
                 <%@include file="header2.jsp"%>
-                
+
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
-                    <h2>Agendamento de exame:</h2>
+                    <h2>Relatórios</h2>
 
-                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
-                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-                        </h:inputText><br>
+                    Data Início: <h:inputText id="dataHoraInicio" value="#{Relatorio.dataInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
 
-                        Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
-                            <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
-                        </h:selectOneMenu><br>
+                    Data Fim: <h:inputText id="dataHoraFinal" value="#{Relatorio.dataFinal}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText><br>
 
-                        Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
-                            <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
-                        </h:selectOneMenu><br>
+                    Valor: 
+                    <h:panelGrid columns="2">
+                        <h:selectOneRadio id="valor" value="#{Relatorio.valor}">
+                            <f:selectItem id="s" itemValue="s" itemLabel="Sim"/>
+                            <f:selectItem id="n" itemValue="n" itemLabel="Não"/>
+                        </h:selectOneRadio>
+                    </h:panelGrid>
 
-                        Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
-                            <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
-                        </h:selectOneMenu><br>
+                    <br>
+                    <h:commandButton action="#{Relatorio.gerar()}" value="Gerar" styleClass="btn"/>
 
-                        Obs.:<h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                        Resultado: <br>
-                        <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
-
-                        <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar" styleClass="btn"/>
-
+                    <div id=”relatorio”></div>
+                
                 </h:form>
-            
-           </div>
+
+            </div>
         </f:view>
 
         <%@include file="footer.jsp"%>

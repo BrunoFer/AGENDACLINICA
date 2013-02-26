@@ -120,10 +120,10 @@ public class AgendaDAO {
         }
     }
 
-    public List<AgendaDAO> getAgendamentos() {
+    public List<AgendaDAO> getAgendamentos(String consulta) {
         EntityManager em = conectar();
         try {
-            Query q = em.createQuery("SELECT a FROM Agenda a");
+            Query q = em.createQuery(consulta);
             List<Agenda> a = q.getResultList();
             List<AgendaDAO> agenda = new ArrayList<AgendaDAO>();
             for (Agenda ag : a) {
