@@ -24,7 +24,7 @@
             
             <div class="wrapper">
                 <div class="container-fluid">
-                    <%@include file="header2.jsp"%>
+                    <%@include file="header.jsp"%>
                 </div>
             </div>
 
