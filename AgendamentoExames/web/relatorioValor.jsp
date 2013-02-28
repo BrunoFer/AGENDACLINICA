@@ -20,11 +20,17 @@
     <body>
 
         <f:view>
+            
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header.jsp"%>
                 <h:form>
 
-                    <h:dataTable value="#{Relatorio.listaAgendamentos(2)}" var="rel" id="listaAgendamentos" 
+                    <h:dataTable value="#{Relatorio.listaAgendamentos()}" var="rel" id="listaAgendamentos" 
                                  border="1" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Relatório por período" />
@@ -34,42 +40,43 @@
                             <f:facet name="header">
                                 <h:outputText value="Código do exame"/>
                             </f:facet>
-                            <h:outputText value="#{rel.exame.idExame}"/>
+                            <h:outputText value="#{rel.exameBean.idExame}"/>
                         </h:column>
                         
                         <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Data"/>
                             </f:facet>
-                            <h:outputFormat value="#{rel.agenda.dataHora}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputFormat>
+                            <h:outputText value="#{rel.dataHora}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                            </h:outputText>
                         </h:column>
                         
                         <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Exame"/>
                             </f:facet>
-                            <h:outputText value="#{rel.exame.nome}"/>
+                            <h:outputText value="#{rel.exameBean.nome}"/>
                         </h:column>
 
                         <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Paciente"/>
                             </f:facet>
-                            <h:outputText value="#{rel.paciente.nome}"/>
+                            <h:outputText value="#{rel.pacienteBean.nome}"/>
                         </h:column>
 
                         <h:column headerClass="colunas">
                             <f:facet name="header">
                                 <h:outputText value="Valor"/>
                             </f:facet>
-                            <h:outputText value="#{rel.exame.valor}"/>
+                            <h:outputText value="#{rel.exameBean.valor}"/>
                         </h:column>
                         
-                        <f:facet name="header">
-                            <h:outputLabel value="Total: #{rel.calcula()}"/>
+                        <f:facet name="footer">
+                            <h:outputLabel styleClass="pull-right span2" value="Total: #{Relatorio.valor}"/>
                         </f:facet>
+                        
                     </h:dataTable>
 
                     <br/><br/>

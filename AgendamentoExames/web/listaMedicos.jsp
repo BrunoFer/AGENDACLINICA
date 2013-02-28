@@ -20,12 +20,18 @@
     <body>
 
         <f:view>
+            
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
                 <h:form>
 
                     <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" 
-                                 border="1" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Médicos" />
                         </f:facet>
@@ -52,12 +58,17 @@
                         </h:column>
 
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Medico.remove(medico.idMedico)}" value="Excluir" styleClass="btn"/>
+                            <h:commandButton action="#{Medico.loadMedico()}" value="Alterar" styleClass="btn btn-info">
+                                <f:param name="idMedico" value="#{medico.idMedico}"/>
+                            </h:commandButton>
+                        </h:column>
+                        
+                        <h:column headerClass="colunas">
+                            <h:commandButton action="#{Medico.remove()}" value="Excluir" styleClass="btn btn-inverse">
+                                <f:param name="idMedico" value="#{medico.idMedico}"/>
+                            </h:commandButton>
                         </h:column>
 
-                        <h:column headerClass="colunas">
-                            <h:commandButton action="#{Medico.loadMedico(medico.idMedico)}" value="Alterar" styleClass="btn"/>
-                        </h:column>
                     </h:dataTable>
 
                     <br/><br/>

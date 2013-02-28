@@ -114,10 +114,10 @@ public class AgendaBean {
         this.pacienteBean = pacienteBean;
     }
 
-    public void cadastrar() {
+    public String cadastrar() {
         System.out.println("Cheguei aqui agora");
         AgendaDAO agenda = new AgendaDAO(dataHora, idPaciente, idMedico, idExame, obs, resultado);
-        if (agenda.cadastrar()){
+        if (agenda.cadastrar()) {
             novo();
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage mensagem = new FacesMessage("Cadastro realizada com sucesso!");
@@ -127,33 +127,34 @@ public class AgendaBean {
             FacesMessage mensagem = new FacesMessage("Agendamento já existente!");
             contexto.addMessage("agendamento", mensagem);
         }
+        return "";
     }
 
     public DataModel<AgendaBean> listaAgendamentos() {
         AgendaDAO ag = new AgendaDAO();
-        List<AgendaDAO> listaAgenda = ag.getAgendamentos("SELECT a FROM Agenda a");
+        List<AgendaDAO> listaAgenda = ag.getAgendamentos(null, null);
         if (listaAgenda != null) {
             agendamentos.removeAll(agendamentos);
             for (AgendaDAO a : listaAgenda) {
                 AgendaBean agenda = new AgendaBean(a.getDataHora(), a.getIdPaciente(), a.getIdMedico(), a.getIdExame(),
                         a.getObs(), a.getResultado());
-                
+
                 PacienteBean paciente = new PacienteBean();
                 paciente.setId(a.getIdPaciente());
                 pacienteBean = paciente.getPaciente();
-                
+
                 MedicoBean medico = new MedicoBean();
                 medico.setIdMedico(a.getIdMedico());
                 medicoBean = medico.getMedico();
-                
+
                 ExameBean exame = new ExameBean();
                 exame.setIdExame(a.getIdExame());
                 exameBean = exame.getExame();
-                
+
                 agenda.setPacienteBean(pacienteBean);
                 agenda.setMedicoBean(medicoBean);
                 agenda.setExameBean(exameBean);
-                
+
                 agendamentos.add(agenda);
                 System.out.println();
             }
@@ -167,24 +168,24 @@ public class AgendaBean {
         String dataStr = parametros.get("dataHora").toString();
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date data2 = inputFormat.parse(dataStr);
-            
+
         String idPac = parametros.get("idPaciente").toString();
         Integer idPac2 = Integer.parseInt(idPac);
-        
+
         String idMed = parametros.get("idMedico").toString();
         Integer idMed2 = Integer.parseInt(idMed);
-        
+
         String idExa = parametros.get("idExame").toString();
         Integer idExa2 = Integer.parseInt(idExa);
-        
+
         int i;
-        for (i=0;i<agendamentos.size();i++){
-            if (agendamentos.get(i).getDataHora().compareTo(data2)==0 && idExa2==agendamentos.get(i).getIdExame()
-                    && idPac2==agendamentos.get(i).getIdPaciente() && idMed2==agendamentos.get(i).getIdMedico()){
+        for (i = 0; i < agendamentos.size(); i++) {
+            if (agendamentos.get(i).getDataHora().compareTo(data2) == 0 && agendamentos.get(i).getIdExame().equals(idExa2)
+                    && agendamentos.get(i).getIdPaciente().equals(idPac2) && agendamentos.get(i).getIdMedico().equals(idMed2)) {
                 break;
             }
         }
-        
+
         this.dataHora = data2;
         this.idPaciente = idPac2;
         this.idMedico = idMed2;
@@ -194,36 +195,44 @@ public class AgendaBean {
         this.pacienteBean = agendamentos.get(i).getPacienteBean();
         this.exameBean = agendamentos.get(i).getExameBean();
         this.medicoBean = agendamentos.get(i).getMedicoBean();
-        
+
         return "carrega";
     }
-    
-    public void alterar(){
+
+    public String alterar() {
         AgendaDAO agendaDAO = new AgendaDAO(dataHora, idPaciente, idMedico, idExame);
-        agendaDAO.alterar();
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        if (agendaDAO.alterar()) {
+            FacesMessage mensagem = new FacesMessage("Alterado com sucesso!");
+            contexto.addMessage("agendamento", mensagem);
+        } else {
+            FacesMessage mensagem = new FacesMessage("ERRO!");
+            contexto.addMessage("agendamento", mensagem);
+        }
+        return "";
     }
-    
+
     public String remove() throws ParseException {
         Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String dataStr = parametros.get("dataHora").toString();
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
         Date data2 = inputFormat.parse(dataStr);
-        
+
         String idPac = parametros.get("idPaciente").toString();
         Integer idPac2 = Integer.parseInt(idPac);
-        
+
         String idMed = parametros.get("idMedico").toString();
         Integer idMed2 = Integer.parseInt(idMed);
-        
+
         String idExa = parametros.get("idExame").toString();
         Integer idExa2 = Integer.parseInt(idExa);
-        
+
         AgendaDAO agendaDAO = new AgendaDAO(data2, idPac2, idMed2, idExa2);
         agendaDAO.remove();
         return "";
     }
-    
-    public void novo(){
+
+    public void novo() {
         setDataHora(null);
         setIdExame(null);
         setIdMedico(null);

@@ -3,9 +3,12 @@ package ctrl;
 import dao.ExameDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -18,7 +21,7 @@ public class ExameBean {
     private Float valor;
     private List<ExameBean> examesBean = new ArrayList();
     private List<SelectItem> exames = new ArrayList();
-    
+
     public ExameBean() {
     }
 
@@ -56,7 +59,7 @@ public class ExameBean {
         ExameDAO exame = new ExameDAO();
         exames.removeAll(exames);
         for (ExameDAO e : exame.getExames()) {
-            exames.add(new SelectItem(e.getIdExame(),e.getNome()));
+            exames.add(new SelectItem(e.getIdExame(), e.getNome()));
         }
         return exames;
     }
@@ -65,15 +68,20 @@ public class ExameBean {
         this.examesBean = examesBean;
     }
 
-    public void cadastrar() {
+    public String cadastrar() {
         if (!nome.isEmpty() && valor != null) {
-            ExameDAO exame = new ExameDAO();
-            exame.setIdExame(idExame);
-            exame.setNome(nome);
-            exame.setValor(valor);
-            if (exame.cadastrar())
+            ExameDAO exame = new ExameDAO(null, nome, valor);
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            if (exame.cadastrar()) {
+                FacesMessage mensagem = new FacesMessage("Cadastro realizado com sucesso!");
+                contexto.addMessage("cadastro", mensagem);
                 novo();
+            } else {
+                FacesMessage mensagem = new FacesMessage("Erro ao cadastrar!");
+                contexto.addMessage("cadastro", mensagem);
+            }
         }
+        return "";
     }
 
     public DataModel<ExameBean> listaExames() {
@@ -87,21 +95,37 @@ public class ExameBean {
         }
         return null;
     }
-    
-    public void remove(Integer id) {
+
+    public String remove() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idExa = parametros.get("idExame").toString();
+        Integer id = Integer.parseInt(idExa);
         ExameDAO exame = new ExameDAO(id);
         exame.remove();
+        return "";
     }
 
-    public void alterar() {
+    public String alterar() {
         ExameDAO exame = new ExameDAO(idExame, nome, valor);
-        exame.alterar();
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        if (exame.alterar()) {
+            FacesMessage mensagem = new FacesMessage("Cadastro alterado com sucesso!");
+            contexto.addMessage("cadastro", mensagem);
+        } else {
+            FacesMessage mensagem = new FacesMessage("Erro ao alterar!");
+            contexto.addMessage("cadastro", mensagem);
+        }
+        return "";
     }
 
-    public String loadExame(Integer id) {
+    public String loadExame() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idExa = parametros.get("idExame").toString();
+        Integer id = Integer.parseInt(idExa);
+
         int i;
         for (i = 0; i < examesBean.size(); i++) {
-            if (examesBean.get(i).idExame == id) {
+            if (examesBean.get(i).getIdExame().equals(id)) {
                 break;
             }
         }
@@ -112,15 +136,15 @@ public class ExameBean {
 
         return "carrega";
     }
-    
+
     public ExameBean getExame() {
         ExameDAO exameDAO = new ExameDAO(idExame);
         exameDAO = exameDAO.getExame();
         ExameBean exame = new ExameBean(exameDAO.getIdExame(), exameDAO.getNome(), exameDAO.getValor());
         return exame;
     }
-    
-    public void novo(){
+
+    public void novo() {
         setIdExame(null);
         setNome("");
         setValor(null);

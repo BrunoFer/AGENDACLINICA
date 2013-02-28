@@ -20,8 +20,13 @@
     <body>
 
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
                 <h:form>
 
                     <h:dataTable value="#{Exame.listaExames()}" var="exame" id="listaExames" 
@@ -52,12 +57,17 @@
                         </h:column>
 
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Exame.remove(exame.idExame)}" value="Excluir" styleClass="btn"/>
+                            <h:commandButton action="#{Exame.loadExame()}" value="Alterar" styleClass="btn btn-info">
+                                <f:param name="idExame" value="#{exame.idExame}"/>
+                            </h:commandButton>
                         </h:column>
-
+                        
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Exame.loadExame(exame.idExame)}" value="Alterar" styleClass="btn"/>
+                            <h:commandButton action="#{Exame.remove()}" value="Excluir" styleClass="btn btn-inverse">
+                                <f:param name="idExame" value="#{exame.idExame}"/>
+                            </h:commandButton>
                         </h:column>
+                        
                     </h:dataTable>
 
                     <br/><br/>

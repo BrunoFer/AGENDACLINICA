@@ -20,8 +20,13 @@
     <body>
 
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
@@ -32,6 +37,11 @@
 
                     <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
+                    <br>
+                    <div id="box">
+                        <h:messages for="cadastro"/>
+                    </div>
+                    
                 </h:form>
 
             </div>

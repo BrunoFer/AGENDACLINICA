@@ -20,12 +20,17 @@
     <body>
 
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
                 <h:form>
 
                     <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
-                                 border="1" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Agendamentos" />
                         </f:facet>
@@ -75,33 +80,34 @@
                         </h:column>
 
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Agenda.remove()}" value="Excluir" styleClass="btn">
+                            <h:commandButton action="#{Agenda.loadAgendamento()}" value="Adicionar resultado" styleClass="btn btn-info">
                                 <f:param name="dataHora" value="#{agenda.dataHora}"/>
                                 <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
                                 <f:param name="idExame" value="#{agenda.idExame}"/>
                                 <f:param name="idMedico" value="#{agenda.idMedico}"/>
                             </h:commandButton>
                         </h:column>
-
+                        
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Agenda.loadAgendamento()}" value="Alterar" styleClass="btn">
+                            <h:commandButton action="#{Agenda.remove()}" value="Excluir" styleClass="btn btn-inverse">
                                 <f:param name="dataHora" value="#{agenda.dataHora}"/>
                                 <f:param name="idPaciente" value="#{agenda.idPaciente}"/>
                                 <f:param name="idExame" value="#{agenda.idExame}"/>
                                 <f:param name="idMedico" value="#{agenda.idMedico}"/>
                             </h:commandButton>
                         </h:column>
+                        
                     </h:dataTable>
 
-                    <br/><br/>
                     <a href="index.jsp">Página inicial</a>
 
                 </h:form>
 
             </div>
+            <br><br><br><br>
+            <div class="rodape">
+                <%@include file="footer.jsp"%>
+            </div>
         </f:view>
-
-        <%@include file="footer.jsp"%>
-
     </body>
 </html>

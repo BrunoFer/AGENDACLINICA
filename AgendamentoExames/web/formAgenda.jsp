@@ -18,8 +18,13 @@
     </head>
     <body>
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
                 
                 <h:form id="agendamento" prependId="false" styleClass="form-actions">
 

@@ -21,13 +21,18 @@
 
         <f:view>
 
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form>
 
                     <h:dataTable value="#{Paciente.listaPacientes()}" var="paciente" id="listaPacientes" 
-                                 border="1" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped">
                         <f:facet name="header">
                             <h:outputText value="Tabela de Pacientes"/>
                         </f:facet>
@@ -91,22 +96,28 @@
                         </h:column>
 
                         <h:column headerClass="colunas">
-                            <h:commandButton action="#{Paciente.remove(paciente.id)}" value="Excluir" styleClass="btn"/>
+                            <h:commandButton action="#{Paciente.loadPaciente()}" value="Alterar" styleClass="btn btn-info">
+                                <f:param name="idPaciente" value="#{paciente.id}"/>
+                            </h:commandButton>
+                        </h:column>
+                        
+                        <h:column headerClass="colunas">
+                            <h:commandButton action="#{Paciente.remove()}" value="Excluir" styleClass="btn btn-inverse">
+                                <f:param name="idPaciente" value="#{paciente.id}"/>
+                            </h:commandButton>
                         </h:column>
 
-                        <h:column headerClass="colunas">
-                            <h:commandButton action="#{Paciente.loadPaciente(paciente.id)}" value="Alterar" styleClass="btn"/>
-                        </h:column>
                     </h:dataTable>
-                    
+
                     <br/><br/>
                     <a href="index.jsp">Página inicial</a>
+                    <br/><br/><br/><br/>
 
                 </h:form>
 
             </div>
         </f:view>
-        
+
         <%@include file="footer.jsp"%>
 
     </body>

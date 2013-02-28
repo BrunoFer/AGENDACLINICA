@@ -18,31 +18,32 @@
     </head>
     <body>
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Relatórios</h2>
 
                     Data Início: <h:inputText id="dataHoraInicio" value="#{Relatorio.dataInicio}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                
                     </h:inputText>
 
                     Data Fim: <h:inputText id="dataHoraFinal" value="#{Relatorio.dataFinal}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        
                     </h:inputText><br>
 
-                    Valor: 
                     <h:panelGrid columns="2">
-                        <h:selectOneRadio id="valor" value="#{Relatorio.valor}">
-                            <f:selectItem id="s" itemValue="s" itemLabel="Sim"/>
-                            <f:selectItem id="n" itemValue="n" itemLabel="Não"/>
-                        </h:selectOneRadio>
+                        <h:selectBooleanCheckbox id="decisao" value="#{Relatorio.decisao}"/>Valor
                     </h:panelGrid>
 
                     <br>
-                    <h:commandButton action="#{Relatorio.gerar()}" value="Gerar" styleClass="btn"/>
+                    <h:commandButton action="#{Relatorio.gerar()}" value="Gerar Relatório" styleClass="btn btn-primary"/>
 
                     <div id=”relatorio”></div>
                 

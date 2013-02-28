@@ -20,8 +20,14 @@
     <body>
 
         <f:view>
+            
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
@@ -41,6 +47,11 @@
 
                     <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
 
+                    <br>
+                    <div id="box">
+                        <h:messages for="agendamento"/>
+                    </div>
+                    
                     <br/><br/>
                     <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
 

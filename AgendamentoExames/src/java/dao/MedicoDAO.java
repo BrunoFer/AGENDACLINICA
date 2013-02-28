@@ -137,7 +137,7 @@ public class MedicoDAO {
         }
     }
     
-    public void alterar(){
+    public boolean alterar(){
         EntityManager em = conecta();
         try {
             Medico medico = em.find(Medico.class, idMedico);
@@ -147,9 +147,11 @@ public class MedicoDAO {
             em.getTransaction().begin();
             em.persist(medico);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             if (em.getTransaction().isActive())
                 em.getTransaction().rollback();
+            return false;
         }
     }
 }

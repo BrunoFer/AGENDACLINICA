@@ -21,8 +21,14 @@
     <body>
 
         <f:view>
+            
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
@@ -30,8 +36,14 @@
                     Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
                     CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br>
 
-                    <h:commandButton action="#{Medico.alterar()}" value="Alterar"/><br><br>
+                    <h:commandButton action="#{Medico.alterar()}" value="Alterar" styleClass="btn"/><br><br>
 
+                    <br>
+                    <div id="box">
+                        <h:messages for="cadastro"/>
+                    </div>
+                    <br>
+                    
                     <h:commandLink action="listaMedicos.jsp" value="Lista de médicos"/>
 
                 </h:form>

@@ -1,13 +1,15 @@
-
 package ctrl;
 
 import dao.PacienteDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -122,20 +124,20 @@ public class PacienteBean {
         return "PacienteBean{" + "id=" + id + ", nome=" + nome + ", dataNasc=" + dataNasc + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + '}';
     }
 
-    public void cadastrar() {
+    public String cadastrar() {
         if (!nome.isEmpty() && dataNasc != null) {
-            PacienteDAO paciente = new PacienteDAO();
-            paciente.setId(null);
-            paciente.setNome(nome);
-            paciente.setDataNasc(dataNasc);
-            paciente.setLogradouro(logradouro);
-            paciente.setNumero(numero);
-            paciente.setBairro(bairro);
-            paciente.setCidade(cidade);
-            paciente.setUf(uf);
-            if (paciente.cadastrar())
+            PacienteDAO paciente = new PacienteDAO(null, nome, dataNasc, logradouro, numero, bairro, cidade, uf);
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            if (paciente.cadastrar()) {
+                FacesMessage mensagem = new FacesMessage("Cadastro realizado com sucesso!");
+                contexto.addMessage("cadastro", mensagem);
                 novo();
+            } else {
+                FacesMessage mensagem = new FacesMessage("Erro ao cadastrar!");
+                contexto.addMessage("cadastro", mensagem);
+            }
         }
+        return "";
     }
 
     public DataModel<PacienteBean> listaPacientes() {
@@ -151,23 +153,40 @@ public class PacienteBean {
         return null;
     }
 
-    public void remove(Integer id) {
+    public String remove() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idPac = parametros.get("idPaciente").toString();
+        Integer id = Integer.parseInt(idPac);
         PacienteDAO paciente = new PacienteDAO(id);
         paciente.remove();
+        return "";
     }
 
-    public void alterar() {
+    public String alterar() {
         PacienteDAO paciente = new PacienteDAO(id, nome, dataNasc, logradouro, numero, bairro, cidade, uf);
-        paciente.alterar();
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        if (paciente.alterar()) {
+            FacesMessage mensagem = new FacesMessage("Cadastro alterado com sucesso!");
+            contexto.addMessage("cadastro", mensagem);
+        } else {
+            FacesMessage mensagem = new FacesMessage("Erro ao alterar!");
+            contexto.addMessage("cadastro", mensagem);
+        }
+        return "";
     }
 
-    public String loadPaciente(Integer id) {
+    public String loadPaciente() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idPac = parametros.get("idPaciente").toString();
+        Integer id = Integer.parseInt(idPac);
+
         int i;
         for (i = 0; i < pacientesBean.size(); i++) {
-            if (pacientesBean.get(i).id == id) {
+            if (pacientesBean.get(i).getId().equals(id)) {
                 break;
             }
         }
+
         this.id = id;
         this.nome = pacientesBean.get(i).nome;
         this.dataNasc = pacientesBean.get(i).dataNasc;
@@ -188,8 +207,8 @@ public class PacienteBean {
                 pacienteDAO.getCidade(), pacienteDAO.getUf());
         return paciente;
     }
-    
-    public void novo(){
+
+    public void novo() {
         setNome("");
         setDataNasc(null);
         setId(null);

@@ -118,10 +118,18 @@ public class AgendaDAO {
         }
     }
 
-    public List<AgendaDAO> getAgendamentos(String consulta) {
+    public List<AgendaDAO> getAgendamentos(String dataInicio, String dataFinal) {
         EntityManager em = conectar();
         try {
-            Query q = em.createQuery(consulta);
+            String consulta;
+            Query q;
+            if (dataInicio != null) {
+                consulta = "SELECT a FROM Agenda a WHERE dataHora BETWEEN :dataInicio AND :dataFinal";
+                q = em.createQuery(consulta).setParameter("dataInicio", dataInicio).setParameter("dataFinal", dataFinal);
+            } else {
+                consulta = "SELECT a FROM Agenda a";
+                q = em.createQuery(consulta);
+            }
             List<Agenda> a = q.getResultList();
             List<AgendaDAO> agenda = new ArrayList<AgendaDAO>();
             for (Agenda ag : a) {
@@ -135,25 +143,6 @@ public class AgendaDAO {
                 em.getTransaction().rollback();
             }
             return null;
-        }
-    }
-
-    public void alterar() {
-        EntityManager em = conectar();
-        try {
-            AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
-            Agenda agenda = em.find(Agenda.class, agendaPK);
-            agenda.setObs(obs);
-            agenda.setResultado(resultado);
-
-            em.getTransaction().begin();
-            em.persist(agenda);
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
         }
     }
 
@@ -173,4 +162,23 @@ public class AgendaDAO {
         }
     }
 
+    public boolean alterar() {
+        EntityManager em = conectar();
+        try {
+            AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
+            Agenda agenda = em.find(Agenda.class, agendaPK);
+            agenda.setObs(obs);
+            agenda.setResultado(resultado);
+
+            em.getTransaction().begin();
+            em.persist(agenda);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            return false;
+        }
+    }
 }

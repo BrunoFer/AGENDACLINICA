@@ -41,11 +41,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="/formAgenda.jsp">Relatórios</a>
-            <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="formAgenda.jsp">Busca por período</a></li>
-                <li><a tabindex="-1" href="listaAgenda.jsp">Busca por período e valor</a></li>
-            </ul>
+            <a class="dropdown-toggle" href="formRelatorio.jsp">Relatórios</a>
         </li>
     </ul>
     <div class="pull-right">

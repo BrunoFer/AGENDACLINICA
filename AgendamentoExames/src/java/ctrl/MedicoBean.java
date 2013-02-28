@@ -3,9 +3,12 @@ package ctrl;
 import dao.MedicoDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -18,7 +21,7 @@ public class MedicoBean {
     private String crm;
     private List<MedicoBean> medicosBean = new ArrayList<MedicoBean>();
     private List<SelectItem> medicos = new ArrayList<SelectItem>();
-    
+
     public MedicoBean() {
     }
 
@@ -57,7 +60,7 @@ public class MedicoBean {
         medicos.removeAll(medicos);
         for (MedicoDAO e : medico.getMedicos()) {
             medicos.add(new SelectItem(e.getIdMedico(), e.getNome()));
-            
+
         }
         return medicos;
     }
@@ -66,15 +69,20 @@ public class MedicoBean {
         this.medicosBean = medicosBean;
     }
 
-    public void cadastrar() {
+    public String cadastrar() {
         if (!nome.isEmpty() && !crm.isEmpty()) {
-            MedicoDAO medico = new MedicoDAO();
-            medico.setIdMedico(null);
-            medico.setNome(nome);
-            medico.setCrm(crm);
-            if (medico.cadastrar())
+            MedicoDAO medico = new MedicoDAO(null, nome, crm);
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            if (medico.cadastrar()) {
+                FacesMessage mensagem = new FacesMessage("Cadastro realizado com sucesso!");
+                contexto.addMessage("cadastro", mensagem);
                 novo();
+            } else {
+                FacesMessage mensagem = new FacesMessage("Erro ao cadastrar!");
+                contexto.addMessage("cadastro", mensagem);
+            }
         }
+        return "";
     }
 
     public DataModel<MedicoBean> listaMedicos() {
@@ -89,20 +97,36 @@ public class MedicoBean {
         return null;
     }
 
-    public void remove(Integer id) {
+    public String remove() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idMed = parametros.get("idMedico").toString();
+        Integer id = Integer.parseInt(idMed);
         MedicoDAO medico = new MedicoDAO(id);
         medico.remove();
-    }
-    
-    public void alterar() {
-        MedicoDAO medico = new MedicoDAO(idMedico, nome, crm);
-        medico.alterar();
+        return "";
     }
 
-    public String loadMedico(Integer id) {
+    public String alterar() {
+        MedicoDAO medico = new MedicoDAO(idMedico, nome, crm);
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        if (medico.alterar()) {
+            FacesMessage mensagem = new FacesMessage("Cadastro alterado com sucesso!");
+            contexto.addMessage("cadastro", mensagem);
+        } else {
+            FacesMessage mensagem = new FacesMessage("Erro ao alterar!");
+            contexto.addMessage("cadastro", mensagem);
+        }
+        return "";
+    }
+
+    public String loadMedico() {
+        Map parametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idMed = parametros.get("idMedico").toString();
+        Integer id = Integer.parseInt(idMed);
+
         int i;
         for (i = 0; i < medicosBean.size(); i++) {
-            if (medicosBean.get(i).idMedico == id) {
+            if (medicosBean.get(i).getIdMedico().equals(id)) {
                 break;
             }
         }
@@ -113,15 +137,15 @@ public class MedicoBean {
 
         return "carrega";
     }
-    
+
     public MedicoBean getMedico() {
         MedicoDAO medicoDAO = new MedicoDAO(idMedico);
         medicoDAO = medicoDAO.getMedico();
         MedicoBean medico = new MedicoBean(medicoDAO.getIdMedico(), medicoDAO.getNome(), medicoDAO.getCrm());
         return medico;
     }
-    
-    public void novo(){
+
+    public void novo() {
         setIdMedico(null);
         setNome("");
         setCrm("");

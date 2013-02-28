@@ -203,7 +203,7 @@ public class PacienteDAO {
         }
     }
     
-    public void alterar(){
+    public boolean alterar(){
         EntityManager em = conexao();
         try {
             Paciente paciente = em.find(Paciente.class, id);
@@ -218,9 +218,11 @@ public class PacienteDAO {
             em.getTransaction().begin();
             em.persist(paciente);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             if (em.getTransaction().isActive())
                 em.getTransaction().rollback();
+            return false;
         }
     }
 }

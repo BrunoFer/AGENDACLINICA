@@ -140,7 +140,7 @@ public class ExameDAO {
         }
     }
     
-    public void alterar(){
+    public boolean alterar(){
         EntityManager em = conecta();
         try {
             Exame exame = em.find(Exame.class, idExame);
@@ -150,9 +150,11 @@ public class ExameDAO {
             em.getTransaction().begin();
             em.persist(exame);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             if (em.getTransaction().isActive())
                 em.getTransaction().rollback();
+            return false;
         }
     }
 }

@@ -18,10 +18,15 @@
         <link href="css/style.css" rel="stylesheet"/>
     </head>
     <body>
-        
+
         <f:view>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <%@include file="header2.jsp"%>
+                </div>
+            </div>
+
             <div class="container">
-                <%@include file="header2.jsp"%>
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
@@ -32,12 +37,17 @@
 
                     <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
+                    <br>
+                    <div id="box">
+                        <h:messages for="cadastro"/>
+                    </div>
+
                 </h:form>
 
             </div>
         </f:view>
 
         <%@include file="footer.jsp"%>
-        
+
     </body>
 </html>
