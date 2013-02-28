@@ -30,7 +30,8 @@
                 <h:form>
 
                     <h:dataTable value="#{Exame.listaExames()}" var="exame" id="listaExames" 
-                                 border="2" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped" columnClasses="span1,span5,span3,span1,span1">
+                        
                         <f:facet name="header">
                             <h:outputText value="Tabela de Exames" />
                         </f:facet>
@@ -51,9 +52,11 @@
 
                         <h:column headerClass="colunas">
                             <f:facet name="header">
-                                <h:outputText value="Valor"/>
+                                <h:outputText value="Valor (R$)"/>
                             </f:facet>
-                            <h:outputText value="#{exame.valor}"/>
+                            <h:outputText value="#{exame.valor}">
+                                <f:convertNumber pattern="#,##0.00"/>
+                            </h:outputText>
                         </h:column>
 
                         <h:column headerClass="colunas">
