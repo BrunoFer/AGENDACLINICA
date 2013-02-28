@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,22 +15,27 @@
         <link href="css/style.css" rel="stylesheet"/>
     </head>
     <body>
+
         <div class="container">
-            <%
-                if (request.getParameter("error") != null) {
-                    if (request.getParameter("error").equals("invalido")) {
-            %>
-            <p>
-                <span style="color:red">
-                    Usuário ou Senha inválidos
-                </span>
-            </p>
-            <%        } //fim do if equals
-                }//fim do if null
-%>
+
             <div class="control-group">
+                
                 <form action="j_spring_security_check" method="post" class="form-signin">
+
                     <h2>Faça o login</h2><br>
+                    <%
+                        if (request.getParameter("error") != null) {
+                            if (request.getParameter("error").equals("invalido")) {
+                    %>
+                    <p>
+                        <span style="color:red">
+                            Usuário ou Senha inválidos
+                        </span>
+                    </p>
+                    <%        } //fim do if equals
+                        }//fim do if null
+                    %>
+                    
                     <div class="controls">
                         <input type="text" name="j_username" id="j_username" placeholder="Digite o nome"
                                value="${not empty login_error ? SPRING_SECURITY_LAST_USERNAME : ''}"/><br>
@@ -40,5 +46,6 @@
             </div>
 
         </div>
+
     </body>
 </html>
