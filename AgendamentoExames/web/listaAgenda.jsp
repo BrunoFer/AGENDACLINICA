@@ -26,13 +26,14 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
                 <h:form>
 
                     <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
-                                 border="2" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped" columnClasses=",span4,,span3,,,,">
+
                         <f:facet name="header">
-                            <h:outputText value="Tabela de Agendamentos" />
+                            <h:outputText value="Agendamentos" styleClass="lead"/>
                         </f:facet>
 
                         <h:column headerClass="colunas">
@@ -87,7 +88,7 @@
                                 <f:param name="idMedico" value="#{agenda.idMedico}"/>
                             </h:commandButton>
                         </h:column>
-                        
+
                         <h:column headerClass="colunas">
                             <h:commandButton action="#{Agenda.remove()}" value="Excluir" styleClass="btn btn-inverse">
                                 <f:param name="dataHora" value="#{agenda.dataHora}"/>
@@ -96,7 +97,7 @@
                                 <f:param name="idMedico" value="#{agenda.idMedico}"/>
                             </h:commandButton>
                         </h:column>
-                        
+
                     </h:dataTable>
 
                     <a href="index.jsp">Página inicial</a>

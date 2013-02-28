@@ -31,9 +31,9 @@
                 <h:form>
 
                     <h:dataTable value="#{Medico.listaMedicos()}" var="medico" id="listaMedicos" 
-                                 border="2" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped" columnClasses="span1,span5,span3,span1,span1">
                         <f:facet name="header">
-                            <h:outputText value="Tabela de Médicos" />
+                            <h:outputText value="Médicos" styleClass="lead"/>
                         </f:facet>
 
                         <h:column headerClass="colunas">

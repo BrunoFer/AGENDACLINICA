@@ -27,14 +27,14 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form>
 
                     <h:dataTable value="#{Paciente.listaPacientes()}" var="paciente" id="listaPacientes" 
-                                 border="2" styleClass="table table-striped">
+                                 border="2" styleClass="table table-striped" columnClasses=",span5,,span4,,,span3,,">
                         <f:facet name="header">
-                            <h:outputText value="Tabela de Pacientes"/>
+                            <h:outputText value="Pacientes" styleClass="lead"/>
                         </f:facet>
 
                         <h:column headerClass="colunas">
