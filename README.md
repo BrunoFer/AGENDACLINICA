@@ -14,11 +14,15 @@ Após o download do projeto do SINCLI, faça:<br>
 <b>1º passo: </b><br>
 Importe as bibliotecas Hibernate e Java EE 6 Endossada para API.
 
-<b>1º passo: </b>
-Faça o download do Framework Spring Security no link http://static.springsource.org/spring-security/site/downloads.html.
+<b>2º passo: </b><br>
+Faça o download do Framework Spring Security no link http://static.springsource.org/spring-security/site/downloads.html.<br>
+e adicione no seu projeto em bibliotecas.
 
-<b>1º passo: </b>
-<b>1º passo: </b>
+<b>3º passo: </b><br>
+Instalação do mysql e criação da estrutura do banco através do script SQL da pasta database.
+
+<b>4º passo: </b><br>
+Criação da conexão com o banco no netbeans.
 
 <b>Aluno: </b> Bruno Ferreira da Costa<br>
 <b>Instituto Federal de Educação, Ciência e Tecnologia do Sudeste de MG - Câmpus Barbacena</b><br>
