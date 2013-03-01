@@ -15,7 +15,7 @@ Após o download do projeto do SINCLI, faça:<br>
 Importe as bibliotecas Hibernate e Java EE 6 Endossada para API.
 
 <b>2º passo: </b><br>
-Faça o download do Framework Spring Security no link http://static.springsource.org/spring-security/site/downloads.html.<br>
+Faça o download do <b>Spring Security</b> e <b>Spring Framework</b> em http://www.springsource.org/download/community 
 e adicione no seu projeto em bibliotecas.
 
 <b>3º passo: </b><br>
