@@ -34,12 +34,17 @@
 
                     <h2>Editar registro de Médico</h2><br/>
 
-                    <h:panelGrid columns="2" width="40%">
+                    <h:panelGrid columns="3" width="45%">
 
-                        <h:outputLabel value="* Nome "/>
-                        <h:inputText value="#{Medico.nome}" id="nome"/>
-                        <h:outputLabel value="* CRM "/>
-                        <h:inputText value="#{Medico.crm}" id="crm"/>
+                        <h:outputLabel value="* Nome"/>
+                        <h:inputText value="#{Medico.nome}" id="nome" required="true" 
+                                     immediate="true" requiredMessage="Valor obrigatório"/>
+                        <h:message for="nome" styleClass="alert alert-danger"/>
+                        
+                        <h:outputLabel value="* CRM"/>
+                        <h:inputText value="#{Medico.crm}" id="crm" required="true" 
+                                     immediate="true" requiredMessage="CRM obrigatório"/>
+                        <h:message for="crm" styleClass="alert alert-danger"/>
                         <br/><br/><br/>
 
                         <h:commandButton action="#{Medico.alterar()}" value="Alterar" styleClass="btn"/><br><br>
@@ -47,7 +52,7 @@
                     </h:panelGrid>
                         
                     <div id="box">
-                        <h:messages for="cadastro"/>
+                        <h:messages for="cadastro" styleClass="alert alert-success"/>
                     </div>
                     
                     <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>

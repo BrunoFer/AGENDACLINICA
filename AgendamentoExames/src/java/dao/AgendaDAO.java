@@ -165,6 +165,7 @@ public class AgendaDAO {
     public boolean alterar() {
         EntityManager em = conectar();
         try {
+            System.out.println("Aqui: "+ dataHora + " - "+idExame + " - "+ idMedico +" - "+idPaciente);
             AgendaPK agendaPK = new AgendaPK(dataHora, idMedico, idExame, idPaciente);
             Agenda agenda = em.find(Agenda.class, agendaPK);
             agenda.setObs(obs);

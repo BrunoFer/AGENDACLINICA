@@ -200,7 +200,7 @@ public class AgendaBean {
     }
 
     public String alterar() {
-        AgendaDAO agendaDAO = new AgendaDAO(dataHora, idPaciente, idMedico, idExame);
+        AgendaDAO agendaDAO = new AgendaDAO(dataHora, idPaciente, idMedico, idExame,obs,resultado);
         FacesContext contexto = FacesContext.getCurrentInstance();
         if (agendaDAO.alterar()) {
             FacesMessage mensagem = new FacesMessage("Alterado com sucesso!");

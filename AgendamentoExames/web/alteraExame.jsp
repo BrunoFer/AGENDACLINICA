@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
@@ -14,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Altera Exame</title>
+        <title>Altera Agenda</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet"/>
     </head>
@@ -32,29 +31,33 @@
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                    <h2>Editar registro de Exame</h2><br/>
-                    
-                    <h:panelGrid columns="2" width="50%">
+                    <h2>Edição Agendamento</h2><br/>
 
-                        <h:outputLabel value="* Nome "/>
-                        <h:inputText id="nome" value="#{Exame.nome}"/>
+                    <h:panelGrid columns="2" width="45%">
 
-                        <h:outputLabel value="* Valor "/>
-                        <h:inputText id="valor" value="#{Exame.valor}"/>
-                        <br/><br/><br/>
+                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:inputText><br>
 
-                        <h:commandButton action="#{Exame.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+                        Médico: <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/><br>
+
+                        Exame: <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/><br>
+
+                        Paciente: <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/><br>
+
+                        Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
+                        Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br><br>
+
+                        <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
 
                     </h:panelGrid>
-
+                    
                     <div id="box">
-                        <h:messages for="cadastro"/>
+                        <h:message for="agendamento" styleClass="alert alert-success"/>
                     </div>
 
-                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
-
                     <br/><br/>
-                    <h:commandLink action="listaExames.jsp" value="Lista de exames"/>
+                    <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
 
                 </h:form>
             </div>

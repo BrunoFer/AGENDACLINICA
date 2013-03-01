@@ -33,29 +33,31 @@
 
                     <h2>Editar registro de Paciente</h2><br/>
 
-                    <h:panelGrid columns="2" width="40%">
+                    <h:panelGrid columns="3" width="40%">
 
                         <h:outputLabel value="* Nome "/>
                         <h:inputText id="nome" value="#{Paciente.nome}" required="true" 
-                                     immediate="true"/>
-
+                                     immediate="true" requiredMessage="Nome Obrigatório"/>
+                        <h:message for="nome" styleClass="alert alert-danger"/>
+                        
                         <h:outputLabel value="* Data de nascimento "/>
                         <h:inputText id="dataNasc" value="#{Paciente.dataNasc}" 
                                      required="true" immediate="true">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
-
+                        <h:message for="dataNasc" styleClass="alert alert-danger"/>
+                        
                         <h:outputLabel value="Logradouro "/>
-                        <h:inputText id="logradouro" value="#{Paciente.logradouro}"/>
+                        <h:inputText id="logradouro" value="#{Paciente.logradouro}"/><br>
 
                         <h:outputLabel value="Número "/>
-                        <h:inputText id="numero" value="#{Paciente.numero}"/>
+                        <h:inputText id="numero" value="#{Paciente.numero}"/><br>
 
                         <h:outputLabel value="Bairro "/>
-                        <h:inputText id="bairro" value="#{Paciente.bairro}"/>
+                        <h:inputText id="bairro" value="#{Paciente.bairro}"/><br>
 
                         <h:outputLabel value="Cidade "/>
-                        <h:inputText id="cidade" value="#{Paciente.cidade}"/>
+                        <h:inputText id="cidade" value="#{Paciente.cidade}"/><br>
 
                         <h:outputLabel value="UF "/>
                         <h:selectOneMenu value="#{Paciente.uf}">  
@@ -86,14 +88,16 @@
                             <f:selectItem itemValue="SE" itemLabel="Sergipe"/>                            
                             <f:selectItem itemValue="SP" itemLabel="São Paulo"/>
                             <f:selectItem itemValue="TO" itemLabel="Tocantis"/>      
-                        </h:selectOneMenu><br><br><br>
+                        </h:selectOneMenu>
+                        <br/>
 
                         <h:commandButton action="#{Paciente.alterar()}" value="Alterar" styleClass="btn"/><br><br>
 
                     </h:panelGrid>
 
+                    <br>
                     <div class="color: #f00">
-                        <h:messages for="cadastro"/>
+                        <h:message for="cadastro" styleClass="alert alert-success"/>
                     </div>
 
                     <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>

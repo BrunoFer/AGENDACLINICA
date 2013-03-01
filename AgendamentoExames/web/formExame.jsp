@@ -32,22 +32,27 @@
 
                     <h2>Cadastro de Exames</h2><br>
 
-                    <h:panelGrid columns="2" width="40%">
+                    <h:panelGrid columns="3" width="45%">
 
                         <h:outputLabel value="Nome "/>
-                        <h:inputText id="nome" value="#{Exame.nome}"/>
+                        <h:inputText id="nome" value="#{Exame.nome}" required="true" 
+                                     immediate="true" requiredMessage="Nome obrigatório"/>
+                        <h:message for="nome" styleClass="alert alert-danger"/>
 
                         <h:outputLabel value="Valor" for="valor"/>
-                        <h:inputText id="valor" value="#{Exame.valor}">
+                        <h:inputText id="valor" value="#{Exame.valor}" required="true" 
+                                     immediate="true" requiredMessage="Valor obrigatório">
                             <f:convertNumber minFractionDigits="2" />
-                        </h:inputText><br/>
+                        </h:inputText>
+                        <h:message for="valor" styleClass="alert alert-danger"/>
 
+                        <br/><br/>
                         <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
                     </h:panelGrid>
                     <br>
                     <div id="box">
-                        <h:messages for="cadastro"/>
+                        <h:message for="cadastro" styleClass="alert alert-success"/>
                     </div>
 
                     <br/>

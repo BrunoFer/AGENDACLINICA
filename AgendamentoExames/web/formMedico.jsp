@@ -32,21 +32,19 @@
 
                     <h2>Cadastro de Médico</h2><br>
 
-                    <h:panelGrid columns="5" width="40%">
+                    <h:panelGrid columns="3" width="45%">
 
-                        <h:outputLabel value="* Nome "/>
-                        <h:inputText value="#{Medico.nome}" id="nome"/>
-                        <div id="nome">
-                            <h:messages for="nome"/>
-                        </div>
+                        <h:outputLabel value="* Nome"/>
+                        <h:inputText value="#{Medico.nome}" id="nome" required="true" 
+                                     immediate="true" requiredMessage="Nome obrigatório"/>
+                        <h:message for="nome" styleClass="alert alert-danger"/>
 
-                        <h:outputLabel value="* CRM "/>
-                        <h:inputText value="#{Medico.crm}" id="crm"/>
-                        <div id="crm">
-                            <h:messages for="crm"/>
-                        </div>
+                        <h:outputLabel value="* CRM"/>
+                        <h:inputText value="#{Medico.crm}" id="crm" required="true" 
+                                     immediate="true" requiredMessage="CRM obrigatório"/>
+                        <h:message for="crm" styleClass="alert alert-danger"/>
 
-                        <br/><br/><br/>
+                        <br/><br/>
 
                         <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
 
@@ -54,7 +52,7 @@
 
                     <br/>
                     <div id="box">
-                        <h:messages for="cadastro"/>
+                        <h:message for="cadastro" styleClass="alert alert-success"/>
                     </div>
 
                     <br/>

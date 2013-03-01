@@ -30,7 +30,7 @@
                 <h:form>
 
                     <h:dataTable value="#{Agenda.listaAgendamentos()}" var="agenda" id="listaAgendamentos" 
-                                 border="2" styleClass="table table-striped" columnClasses=",span4,,span3,,,,">
+                                 border="2" styleClass="table table-striped" columnClasses=",span4,,span4,span2,span4,,">
 
                         <f:facet name="header">
                             <h:outputText value="Agendamentos" styleClass="lead"/>

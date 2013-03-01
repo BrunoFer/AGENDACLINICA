@@ -38,14 +38,18 @@
 
                     <h2>Relatórios</h2><br/>
 
-                    <h:panelGrid columns="2" width="40%">
+                    <h:panelGrid columns="3" width="45%">
 
                         <h:outputLabel value="* Data Início " for="dataInicio"/>
-                        <h:inputText id="dataInicio" value="#{Relatorio.dataInicio}"/>
+                        <h:inputText id="dataInicio" value="#{Relatorio.dataInicio}" required="true" 
+                                     immediate="true" requiredMessage="Data obrigatória"/>
+                        <h:message for="dataInicio" styleClass="alert alert-danger"/>
 
                         <h:outputLabel value="* Data Fim " for="dataFinal"/>
-                        <h:inputText id="dataFinal" value="#{Relatorio.dataFinal}"/>
-
+                        <h:inputText id="dataFinal" value="#{Relatorio.dataFinal}" required="true" 
+                                     immediate="true" requiredMessage="Data obrigatória"/>
+                        <h:message for="dataInicio" styleClass="alert alert-danger"/>
+                        
                     </h:panelGrid>
 
                     <br/>
