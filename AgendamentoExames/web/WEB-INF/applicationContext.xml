@@ -30,6 +30,5 @@ users-by-username-query="SELECT username, password, 'true' as enable FROM users 
 authorities-by-username-query="SELECT username, authority FROM users WHERE username=?"/>
         </authentication-provider>
     </authentication-manager>
-    
 
 </beans:beans>

@@ -21,33 +21,42 @@
     <body>
 
         <f:view>
-            
+
             <div class="wrapper">
                 <div class="container-fluid">
                     <%@include file="header.jsp"%>
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                    <h2>Alterar médico</h2>
-                    Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
-                    CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br>
+                    <h2>Editar registro de Médico</h2><br/>
 
-                    <h:commandButton action="#{Medico.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+                    <h:panelGrid columns="2" width="40%">
 
-                    <br>
+                        <h:outputLabel value="* Nome "/>
+                        <h:inputText value="#{Medico.nome}" id="nome"/>
+                        <h:outputLabel value="* CRM "/>
+                        <h:inputText value="#{Medico.crm}" id="crm"/>
+                        <br/><br/><br/>
+
+                        <h:commandButton action="#{Medico.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+
+                    </h:panelGrid>
+                        
                     <div id="box">
                         <h:messages for="cadastro"/>
                     </div>
-                    <br>
                     
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
+
+                    <br/><br/>
                     <h:commandLink action="listaMedicos.jsp" value="Lista de médicos"/>
 
                 </h:form>
-                    
+
             </div>
         </f:view>
 

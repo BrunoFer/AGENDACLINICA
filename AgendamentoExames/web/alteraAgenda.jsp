@@ -20,40 +20,46 @@
     <body>
 
         <f:view>
-            
+
             <div class="wrapper">
                 <div class="container-fluid">
                     <%@include file="header.jsp"%>
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                    <h2>Alterar agendamento</h2>
-                    Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
-                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-                    </h:inputText><br>
+                    <h2>Edição Agendamento</h2><br/>
 
-                    Médico: <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/><br>
+                    <h:panelGrid columns="2" width="50%">
 
-                    Exame: <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/><br>
+                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                        </h:inputText><br>
 
-                    Paciente: <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/><br>
+                        Médico: <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/><br>
 
-                    Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                    Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
+                        Exame: <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/><br>
 
-                    <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
+                        Paciente: <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/><br>
 
-                    <br>
+                        Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
+                        Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br><br>
+
+                        <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
+
+                    </h:panelGrid>
+                    
                     <div id="box">
                         <h:messages for="agendamento"/>
                     </div>
-                    
+
                     <br/><br/>
                     <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
+
+
 
                 </h:form>
             </div>

@@ -24,41 +24,54 @@
                 </div>
             </div>
 
-            <div class="container">
-                
+            <div class="container-fluid">
+
                 <h:form id="agendamento" prependId="false" styleClass="form-actions">
 
-                    <h2>Agendamento de exame:</h2>
+                    <h2>Agendamento de exame</h2><br/>
 
-                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}">
+                    <h:panelGrid columns="2" width="40%">
+                        <h:outputLabel value="* Data "/>
+                        <h:inputText id="dataHora" value="#{Agenda.dataHora}">
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-                        </h:inputText><br>
+                        </h:inputText>
 
-                        Médico: <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
+                        <h:outputLabel value="Médico "/>
+                        <h:selectOneMenu value="#{Agenda.idMedico}" id="medico">
                             <f:selectItems value="#{Medico.medicosBean}" var="med" itemLabel="#{med.nome}" itemValue="#{med.idMedico}"/>
-                        </h:selectOneMenu><br>
+                        </h:selectOneMenu>
 
-                        Exame: <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
+                        <h:outputLabel value="Exame "/>
+                        <h:selectOneMenu value="#{Agenda.idExame}" id="exame">
                             <f:selectItems value="#{Exame.examesBean}" var="exa" itemLabel="#{exa.nome}" itemValue="#{exa.idExame}"/>
-                        </h:selectOneMenu><br>
+                        </h:selectOneMenu>
 
-                        Paciente: <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
+                        <h:outputLabel value="Paciente "/>
+                        <h:selectOneMenu value="#{Agenda.idPaciente}" id="paciente">
                             <f:selectItems value="#{Paciente.pacientesBean}" var="pac" itemLabel="#{pac.nome}" itemValue="#{pac.id}"/>
-                        </h:selectOneMenu><br>
+                        </h:selectOneMenu>
 
-                        Obs.:<h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                        Resultado: <br>
-                        <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br>
+                        <h:outputLabel value="Observações "/>
+                        <h:inputText value="#{Agenda.obs}" id="obs"/>
+
+                        <h:outputLabel value="Resultado "/>
+                        <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/>
+                        <br/><br/>
 
                         <h:commandButton action="#{Agenda.cadastrar()}" value="Cadastrar" styleClass="btn"/>
-                        
-                        <br>
-                        <div id="box">
-                            <h:messages for="agendamento"/>
-                        </div>
+
+                    </h:panelGrid>
+                    <br>
+                    <div id="box">
+                        <h:messages for="agendamento"/>
+                    </div>
+
+                    <br/>
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
+
                 </h:form>
-            
-           </div>
+
+            </div>
         </f:view>
 
         <%@include file="footer.jsp"%>

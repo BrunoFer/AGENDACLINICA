@@ -21,29 +21,39 @@
     <body>
 
         <f:view>
-            
+
             <div class="wrapper">
                 <div class="container-fluid">
                     <%@include file="header.jsp"%>
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="altera" prependId="false" styleClass="form-actions">
 
-                    <h2>Alterar Exame</h2>
-                    Nome: <h:inputText value="#{Exame.nome}" id="nome"/><br>
-                    Valor: <h:inputText value="#{Exame.valor}" id="valor"/><br>
+                    <h2>Editar registro de Exame</h2><br/>
+                    
+                    <h:panelGrid columns="2" width="50%">
 
-                    <h:commandButton action="#{Exame.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+                        <h:outputLabel value="* Nome "/>
+                        <h:inputText id="nome" value="#{Exame.nome}"/>
 
-                    <br>
+                        <h:outputLabel value="* Valor "/>
+                        <h:inputText id="valor" value="#{Exame.valor}"/>
+                        <br/><br/><br/>
+
+                        <h:commandButton action="#{Exame.alterar()}" value="Alterar" styleClass="btn"/><br><br>
+
+                    </h:panelGrid>
+
                     <div id="box">
                         <h:messages for="cadastro"/>
                     </div>
-                    <br>
-                    
+
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
+
+                    <br/><br/>
                     <h:commandLink action="listaExames.jsp" value="Lista de exames"/>
 
                 </h:form>

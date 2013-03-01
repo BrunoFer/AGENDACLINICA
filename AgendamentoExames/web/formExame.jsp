@@ -26,22 +26,33 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Exames</h2><br>
 
-                    Nome: <h:inputText id="nome" value="#{Exame.nome}"/><br>
-                    Valor: <h:inputText id="valor" value="#{Exame.valor}"/><br><br>
+                    <h:panelGrid columns="2" width="40%">
 
-                    <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar" styleClass="btn"/>
+                        <h:outputLabel value="Nome "/>
+                        <h:inputText id="nome" value="#{Exame.nome}"/>
 
+                        <h:outputLabel value="Valor" for="valor"/>
+                        <h:inputText id="valor" value="#{Exame.valor}">
+                            <f:convertNumber minFractionDigits="2" />
+                        </h:inputText><br/>
+
+                        <h:commandButton action="#{Exame.cadastrar()}" value="Cadastrar" styleClass="btn"/>
+
+                    </h:panelGrid>
                     <br>
                     <div id="box">
                         <h:messages for="cadastro"/>
                     </div>
-                    
+
+                    <br/>
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
+
                 </h:form>
 
             </div>

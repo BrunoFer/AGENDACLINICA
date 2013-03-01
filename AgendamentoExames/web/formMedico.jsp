@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : formMedico
     Created on : 14/02/2013, 10:34:39
     Author     : bruno
@@ -26,21 +26,39 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
                     <h2>Cadastro de Médico</h2><br>
 
-                    Nome: <h:inputText value="#{Medico.nome}" id="nome"/><br>
-                    CRM: <h:inputText value="#{Medico.crm}" id="crm"/><br><br>
+                    <h:panelGrid columns="5" width="40%">
 
-                    <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
+                        <h:outputLabel value="* Nome "/>
+                        <h:inputText value="#{Medico.nome}" id="nome"/>
+                        <div id="nome">
+                            <h:messages for="nome"/>
+                        </div>
 
-                    <br>
+                        <h:outputLabel value="* CRM "/>
+                        <h:inputText value="#{Medico.crm}" id="crm"/>
+                        <div id="crm">
+                            <h:messages for="crm"/>
+                        </div>
+
+                        <br/><br/><br/>
+
+                        <h:commandButton action="#{Medico.cadastrar()}" value="Cadastrar" styleClass="btn"/>
+
+                    </h:panelGrid>
+
+                    <br/>
                     <div id="box">
                         <h:messages for="cadastro"/>
                     </div>
+
+                    <br/>
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
 
                 </h:form>
 

@@ -15,6 +15,14 @@
         <title>Relatórios</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script type="text/javascript">  
+            $(document).ready(function() {  
+                $("#dataInicial").mask("99/99/9999").click();
+                $("#dataFinal").mask("99/99/9999").click();
+            });
+        </script>
     </head>
     <body>
         <f:view>
@@ -24,29 +32,32 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <h:form id="cadastro" prependId="false" styleClass="form-actions">
 
-                    <h2>Relatórios</h2>
+                    <h2>Relatórios</h2><br/>
 
-                    Data Início: <h:inputText id="dataHoraInicio" value="#{Relatorio.dataInicio}">
-                                                
-                    </h:inputText>
+                    <h:panelGrid columns="2" width="40%">
 
-                    Data Fim: <h:inputText id="dataHoraFinal" value="#{Relatorio.dataFinal}">
-                        
-                    </h:inputText><br>
+                        <h:outputLabel value="* Data Início " for="dataInicio"/>
+                        <h:inputText id="dataInicio" value="#{Relatorio.dataInicio}"/>
 
-                    <h:panelGrid columns="2">
-                        <h:selectBooleanCheckbox id="decisao" value="#{Relatorio.decisao}"/>Valor
+                        <h:outputLabel value="* Data Fim " for="dataFinal"/>
+                        <h:inputText id="dataFinal" value="#{Relatorio.dataFinal}"/>
+
                     </h:panelGrid>
 
-                    <br>
+                    <br/>
+                    <h:selectBooleanCheckbox id="decisao" value="#{Relatorio.decisao}"/>Incluir valor
+
+
+                    <br/><br/><br/>
                     <h:commandButton action="#{Relatorio.gerar()}" value="Gerar Relatório" styleClass="btn btn-primary"/>
 
-                    <div id=”relatorio”></div>
-                
+                    <br/><br/><br/>
+                    <h:outputLabel value="* Campos obrigatórios" style="color: #f00"/>
+
                 </h:form>
 
             </div>
