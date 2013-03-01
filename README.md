@@ -27,7 +27,7 @@ Criação da conexão com o banco no netbeans.
 Screenshots
 ----------------------
 <b>Tela principal: </b>
-![alt text](https://raw.github.com/BrunoFer/TP_WS_CouchDB/master/imagens/tela-principal.png "Tela principal:")
+![alt text](https://raw.github.com/BrunoFer/AGENDACLINICA/master/imagens/tela-principal.png "Tela principal:")
 
 Desenvolvimento
 ----------------------
