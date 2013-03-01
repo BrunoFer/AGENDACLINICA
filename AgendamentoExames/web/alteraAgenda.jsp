@@ -33,7 +33,7 @@
 
                     <h2>Edição Agendamento</h2><br/>
 
-                    <h:panelGrid columns="2" width="50%">
+                    <h:panelGrid columns="2" width="45%">
 
                         Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
@@ -53,13 +53,11 @@
                     </h:panelGrid>
                     
                     <div id="box">
-                        <h:messages for="agendamento"/>
+                        <h:message for="agendamento" styleClass="alert alert-success"/>
                     </div>
 
                     <br/><br/>
                     <h:commandLink action="listaAgenda.jsp" value="Lista de agendamentos"/>
-
-
 
                 </h:form>
             </div>
