@@ -19,6 +19,9 @@
                 <%@include file="header.jsp"%>
             </div>
         </div>
+        <div class="img-index">
+            <img src="img/index.png" style="opacity:0.75;"/>
+        </div>
         <%@include file="footer.jsp"%>
     </body>
 </html>

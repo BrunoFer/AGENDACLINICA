@@ -9,7 +9,6 @@
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,8 +16,9 @@
         <title>Cadastro de Paciente</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet"/>
-        <script src="js/jquery.js"></script>
-        <script src="js/jquery.maskedinput.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+        <script src="js/jquery.js"/>
+        <script src="js/jquery.maskedinput.min.js"/>
         <script type="text/javascript">
             function add_atributo_form(formulario, elemento, atributo, valor) {
                 var campo = $("#" + formulario + "\\:" + elemento);
@@ -54,33 +54,33 @@
                     <h:panelGrid columns="3" width="45%">
 
                         <h:outputLabel value="* Nome"/>
-                        <h:inputText id="nome" value="#{Paciente.nome}" required="true" 
+                        <h:inputText id="nome" value="#{Paciente.nome}" required="true" style="width:300px"
                                      immediate="true" requiredMessage="Nome obrigatório"/>
                         <h:message for="nome" styleClass="alert alert-danger"/>
-                        
+
                         <h:outputLabel value="* Data de nascimento"/>
-                        <h:inputText id="dataNasc" value="#{Paciente.dataNasc}" 
-                                     required="true" immediate="true" requiredMessage="Data obrigatória">
+                        <h:inputText id="dataNasc" value="#{Paciente.dataNasc}"  style="width:150px"
+                                     required="true" immediate="true" requiredMessage="Data obrigatória" styleClass="dataNasc">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
                         <h:message for="dataNasc" styleClass="alert alert-danger"/>
 
                         <h:outputLabel value="Logradouro"/>
-                        <h:inputText id="logradouro" value="#{Paciente.logradouro}"/>
+                        <h:inputText id="logradouro" value="#{Paciente.logradouro}" style="width:300px"/>
                         <br>
-                        
+
                         <h:outputLabel value="Número"/>
-                        <h:inputText id="numero" value="#{Paciente.numero}"/>
+                        <h:inputText id="numero" value="#{Paciente.numero}" styleClass="numero" style="width:100px"/>
                         <br>
-                        
+
                         <h:outputLabel value="Bairro"/>
                         <h:inputText id="bairro" value="#{Paciente.bairro}"/>
                         <br>
-                        
+
                         <h:outputLabel value="Cidade"/>
                         <h:inputText id="cidade" value="#{Paciente.cidade}"/>
                         <br>
-                        
+
                         <h:outputLabel value="UF"/>
                         <h:selectOneMenu value="#{Paciente.uf}">  
                             <f:selectItem itemValue="AC" itemLabel="Acre"/> 
@@ -130,6 +130,8 @@
     </f:view>
 
     <%@include file="footer.jsp"%>
+
+
 
 </body>
 </html>

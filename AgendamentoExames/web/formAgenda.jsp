@@ -37,7 +37,7 @@
                     <h2>Agendamento de exame</h2><br/>
 
                     <h:panelGrid columns="3" width="45%">
-                        <h:outputLabel value="* Data"/>
+                        <h:outputLabel value="* Data/Hora"/>
                         <h:inputText styleClass="dataHora" id="dataHora" value="#{Agenda.dataHora}" required="true" 
                                      immediate="true" requiredMessage="Data obrigatória">
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>

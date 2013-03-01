@@ -1,3 +1,8 @@
+.colunas{    
+    text-align: center;
+    width: 100px;
+    background-color: #ccccff;
+}
 
 .login{
     position: absolute;
@@ -6,6 +11,13 @@
     width: 40%;
     background-color: #eee;
     text-align: center;
+}
+
+.img-index{
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
 }
 
 .negado{

@@ -35,18 +35,25 @@
 
                     <h:panelGrid columns="2" width="45%">
 
-                        Data: <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
+                        <h:outputLabel value="* Data/Hora"/>
+                        <h:inputText id="dataHora" value="#{Agenda.dataHora}" disabled="true">
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-                        </h:inputText><br>
+                        </h:inputText>
 
-                        Médico: <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/><br>
+                        <h:outputLabel value="Médico "/>
+                        <h:inputText value="#{Agenda.medicoBean.nome}" id="nomeMedico" disabled="true"/>
 
-                        Exame: <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/><br>
+                        <h:outputLabel value="Exame "/>
+                        <h:inputText value="#{Agenda.exameBean.nome}" id="idExame" disabled="true"/>
 
-                        Paciente: <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/><br>
+                        <h:outputLabel value="Paciente "/>
+                        <h:inputText value="#{Agenda.pacienteBean.nome}" id="idPaciente" disabled="true"/>
 
-                        Obs.: <h:inputText value="#{Agenda.obs}" id="obs"/><br>
-                        Resultado: <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br><br>
+                        <h:outputLabel value="Observações"/>
+                        <h:inputText value="#{Agenda.obs}" id="obs"/>
+                        
+                        <h:outputLabel value="Resultado"/>
+                        <h:inputTextarea value="#{Agenda.resultado}" rows="6" cols="40" id="resultado"/><br><br><br>
 
                         <h:commandButton action="#{Agenda.alterar()}" value="Alterar" styleClass="btn"/>
 
